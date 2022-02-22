@@ -1,6 +1,5 @@
 <template>
-    <div class="home">
-      <!-- <input type="checkbox" id="toggle"> -->
+  <div class="home">
     <NavbarView></NavbarView>
     <section class="main-image">
       <div
@@ -10,21 +9,24 @@
         data-aos-delay="1000"
         data-aos-duration="1000"
       >
-        ~好眠~<br/>讓您一夜好眠
+        ~好眠~<br />讓您一夜好眠
       </div>
     </section>
     <section class="main-banner">
       <div class="banner-txt">
-        <h1>
-          滿意您的睡眠品質嗎?
-        </h1>
+        <h1>滿意您的睡眠品質嗎?</h1>
       </div>
       <div class="banner-img"></div>
     </section>
     <section class="info-part">
-      <div class="info" data-aos="fade-right" data-aos-duration="1000" data-aos-once="true">
+      <div
+        class="info"
+        data-aos="fade-right"
+        data-aos-duration="1000"
+        data-aos-once="true"
+      >
         <div class="info-img">
-          <img src="@/assets/pic/main-page/info-img.png" alt="使用枕頭目的"/>
+          <img src="@/assets/pic/main-page/info-img.png" alt="使用枕頭目的" />
         </div>
         <div class="info-txt">
           <h3>使用枕頭的目的</h3>
@@ -33,13 +35,19 @@
           </p>
         </div>
       </div>
-      <div class="info" data-aos="fade-left" data-aos-duration="1000" data-aos-once="true">
+      <div
+        class="info"
+        data-aos="fade-left"
+        data-aos-duration="1000"
+        data-aos-once="true"
+      >
         <div class="info-txt">
           <h3>該如何挑選適合自己的枕頭？</h3>
           <p>
             枕頭的高度是影響睡眠舒適度的一大關鍵，過高或是過低的枕頭都會讓頸椎產生龐大的負擔，且由於每個人生理構造不盡相同，每個人適合的枕頭高度與形狀也會不同。
             <br />
-            <span>平躺時</span>：下巴保持水平狀態，枕頭下沉的幅度約等於自己拳頭高度
+            <span>平躺時</span
+            >：下巴保持水平狀態，枕頭下沉的幅度約等於自己拳頭高度
             <br />
             <span>側躺時</span>：枕頭高度約等於一側肩寬，使身體保持水平
           </p>
@@ -55,33 +63,33 @@
     <section class="product-type">
       <div class="items">
         <a href="#" class="item">
-          <img src="@/assets/pic/機能枕/頂級機能枕.png" alt="機能枕">
-            <div class="txt">
-              <h3>機能枕</h3>
-            </div>
+          <img src="@/assets/pic/機能枕/頂級機能枕.png" alt="機能枕" />
+          <div class="txt">
+            <h3>機能枕</h3>
+          </div>
         </a>
         <a href="#" class="item">
-          <img src="@/assets/pic/乳膠枕/頂級好眠乳膠枕.png" alt="乳膠枕">
-              <div class="txt">
-                  <h3>乳膠枕</h3>
-              </div>
+          <img src="@/assets/pic/乳膠枕/頂級好眠乳膠枕.png" alt="乳膠枕" />
+          <div class="txt">
+            <h3>乳膠枕</h3>
+          </div>
         </a>
         <a href="#" class="item">
-          <img src="@/assets/pic/絲絨枕/頂級羊毛枕.png" alt="絲絨枕">
-              <div class="txt">
-                  <h3>絲絨枕</h3>
-              </div>
+          <img src="@/assets/pic/絲絨枕/頂級羊毛枕.png" alt="絲絨枕" />
+          <div class="txt">
+            <h3>絲絨枕</h3>
+          </div>
         </a>
         <a href="#" class="item">
-          <img src="@/assets/pic/兒童枕/卡納赫拉兒童枕.png" alt="兒童枕">
-              <div class="txt">
-                  <h3>兒童枕</h3>
-              </div>
+          <img src="@/assets/pic/兒童枕/卡納赫拉兒童枕.png" alt="兒童枕" />
+          <div class="txt">
+            <h3>兒童枕</h3>
+          </div>
         </a>
       </div>
     </section>
     <FooterView></FooterView>
-    </div>
+  </div>
 </template>
 <script>
 // @ is an alias to /src
@@ -101,7 +109,7 @@ export default {
 // #app{
 //   width: 100%;
 // }
-.home{
+.home {
   width: 100%;
   height: 100%;
   // background: #ccc;
