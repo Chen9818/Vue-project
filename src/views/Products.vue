@@ -1,5 +1,6 @@
 <template>
   <div class="products">
+    <Loading :active="isLoading"></Loading>
     <NavbarView></NavbarView>
       <div class="container" style="padding-top:100px">
         <div class="row ">
@@ -114,6 +115,21 @@ export default {
         .catch((err) => {
           alert(err.data.message)
         })
+    },
+    addToCart (id, qty = 1) {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
+      this.loadingStatus.loadingItem = id
+      const cart = {
+        product_id: id,
+        qty
+      }
+      this.$http.post(url, { data: cart }).then((response) => {
+        alert(response.data.message)
+        this.loadingStatus.loadingItem = ''
+        // this.getCart();
+      }).catch((err) => {
+        alert(err.data.message)
+      })
     }
   }
 }
