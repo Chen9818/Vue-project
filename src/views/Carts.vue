@@ -2,7 +2,7 @@
   <div class="carts">
     <Loading :active="isLoading"></Loading>
     <NavbarView></NavbarView>
-    <div class="d-md-block d-none" style="height:100vh;padding-top:130px">
+    <div class="d-md-block d-none" style="margin-bottom:100px;padding-top:130px">
         <div
           style="width: 80%"
           class="mx-auto mb-3 d-flex justify-content-between"
@@ -23,7 +23,7 @@
             >清空購物車
           </button>
         </div>
-      <table class="table align-middle mx-auto" style="width: 80%">
+      <table class="table align-middle mx-auto" style="width: 80%" v-if="cart.carts.length>0">
         <thead>
           <tr>
             <th>圖片</th>
@@ -77,6 +77,11 @@
           </tr>
         </tbody>
       </table>
+      <div class="noneCart mx-auto text-center border-top border-dark " style="width: 80%" v-else>
+        <h1>購物車無商品，立刻逛逛!</h1>
+        <img src="@/assets/pic/乳膠枕/好眠乳膠枕.png" alt="好眠乳膠枕">
+        <button type="button" class="btn btn-secondary d-block mx-auto mt-2" @click="redirect()">前往商品列表</button>
+      </div>
       <div class="w-100">
         <div style="width: 80%" class="mx-auto d-flex justify-content-end">
           <h2 v-if="cart.final_total > 0">總金額:{{ cart.final_total }}</h2>
@@ -85,7 +90,7 @@
     </div>
 
     <!--RWD-->
-    <ul class="d-md-none w-100 m-0" style="height:100vh;padding-top:130px">
+    <ul class="d-md-none w-100 m-0" style="margin-bottom:100px;padding-top:130px">
       <div
         style="width: 80%; border-bottom: 1px solid #000"
         class="mx-auto mb-3 d-flex justify-content-between"
@@ -106,50 +111,57 @@
           >清空購物車
         </button>
       </div>
-      <li v-for="item in cart.carts" :key="item" class="mx-auto mb-3" style="width: 80%">
-        <div class="card" style="width: 100%">
-          <div class="card-body d-flex">
-            <div style="width: 100px">
-              <div
-                style="
-                  height: 100px;
-                  background-size: cover;
-                  background-position: center;
-                "
-                :style="{ backgroundImage: `url(${item.product.imageUrl})` }"
-              ></div>
-            </div>
-            <div style="width: 400px">
-              <div class="text-center mb-3">
-                {{ item.product.title }}
+      <div v-if="cart.carts.length>0">
+        <li v-for="item in cart.carts" :key="item" class="mx-auto mb-3" style="width: 80%">
+          <div class="card" style="width: 100%">
+            <div class="card-body d-flex">
+              <div style="width: 100px">
+                <div
+                  style="
+                    height: 100px;
+                    background-size: cover;
+                    background-position: center;
+                  "
+                  :style="{ backgroundImage: `url(${item.product.imageUrl})` }"
+                ></div>
               </div>
-              <select
-                name="productNum"
-                class="form-select mx-auto mb-3"
-                style="width: 80%"
-                v-model="item.qty"
-                @change="updateCart(item)"
-                :disabled="loadingStatus.loadingItem === item.id"
-              >
-                <option :value="num" v-for="num in 8" :key="`${num}${item.id}`">
-                  {{ num }}
-                </option>
-              </select>
-              <div class="text-center">
-                <span>金額:</span>
-                {{ item.product.price * item.qty }}
-                <i
-                  class="fas fa-trash-alt px-5"
-                  type="button"
-                  @click="removeCartItem(item)"
+              <div style="width: 400px">
+                <div class="text-center mb-3">
+                  {{ item.product.title }}
+                </div>
+                <select
+                  name="productNum"
+                  class="form-select mx-auto mb-3"
+                  style="width: 80%"
+                  v-model="item.qty"
+                  @change="updateCart(item)"
                   :disabled="loadingStatus.loadingItem === item.id"
                 >
-                </i>
+                  <option :value="num" v-for="num in 8" :key="`${num}${item.id}`">
+                    {{ num }}
+                  </option>
+                </select>
+                <div class="text-center">
+                  <span>金額:</span>
+                  {{ item.product.price * item.qty }}
+                  <i
+                    class="fas fa-trash-alt px-5"
+                    type="button"
+                    @click="removeCartItem(item)"
+                    :disabled="loadingStatus.loadingItem === item.id"
+                  >
+                  </i>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
+      </div>
+      <div class="noneCart mx-auto text-center" style="width: 80%" v-else>
+        <h1>購物車無商品，立刻逛逛!</h1>
+        <img src="@/assets/pic/乳膠枕/好眠乳膠枕.png" alt="好眠乳膠枕">
+        <button type="button" class="btn btn-secondary d-block mx-auto mt-2" @click="redirect()">前往商品列表</button>
+      </div>
       <div class="w-100">
         <div style="width: 80%" class="mx-auto d-flex justify-content-end">
           <h2 v-if="cart.final_total > 0">總金額:{{ cart.final_total }}</h2>
@@ -161,7 +173,7 @@
         <h1>訂購人資訊</h1>
     </div>
     <div class="mb-5 row justify-content-center">
-      <v-form
+      <Form
         ref="form"
         class="col-md-6"
         v-slot="{ errors }"
@@ -169,7 +181,7 @@
       >
         <div class="mb-3">
           <label for="name" class="form-label">收件人姓名<span class="px-1" style="color: #f00;">*</span></label>
-          <v-field
+          <Field
             id="name"
             name="姓名"
             type="text"
@@ -178,16 +190,16 @@
             placeholder="請輸入姓名"
             rules="required"
             v-model="form.user.name"
-          ></v-field>
-          <error-message
+          ></Field>
+          <ErrorMessage
             name="姓名"
             class="invalid-feedback"
-          ></error-message>
+          ></ErrorMessage>
         </div>
 
         <div class="mb-3">
           <label for="email" class="form-label">收件人電子郵件<span class="px-1" style="color: #f00;">*</span></label>
-          <v-field
+          <Field
             id="email"
             name="email"
             type="email"
@@ -196,16 +208,16 @@
             placeholder="請輸入電子郵件"
             rules="email|required"
             v-model="form.user.email"
-          ></v-field>
-          <error-message
+          ></Field>
+          <ErrorMessage
             name="email"
             class="invalid-feedback"
-          ></error-message>
+          ></ErrorMessage>
         </div>
 
         <div class="mb-3">
           <label for="tel" class="form-label">收件人電話<span class="px-1" style="color: #f00;">*</span></label>
-          <v-field
+          <Field
             id="tel"
             name="電話"
             type="text"
@@ -214,16 +226,16 @@
             placeholder="請輸入電話"
             rules="required|min:8|max:10"
             v-model="form.user.tel"
-          ></v-field>
-          <error-message
+          ></Field>
+          <ErrorMessage
             name="電話"
             class="invalid-feedback"
-          ></error-message>
+          ></ErrorMessage>
         </div>
 
         <div class="mb-3">
           <label for="address" class="form-label">收件人地址<span class="px-1" style="color: #f00;">*</span></label>
-          <v-field
+          <Field
             id="address"
             name="地址"
             type="text"
@@ -232,11 +244,11 @@
             placeholder="請輸入地址"
             rules="required"
             v-model="form.user.address"
-          ></v-field>
-          <error-message
+          ></Field>
+          <ErrorMessage
             name="地址"
             class="invalid-feedback"
-          ></error-message>
+          ></ErrorMessage>
         </div>
 
         <div class="mb-3">
@@ -255,7 +267,7 @@
           :disabled="Object.keys(errors).length > 0 || cart.carts.length === 0"
           >送出訂單</button>
         </div>
-      </v-form>
+      </Form>
     </div>
 
     <FooterView></FooterView>
@@ -273,6 +285,7 @@ export default {
       loadingStatus: {
         loadingItem: ''
       },
+      isLoading: false,
       cart: {
         carts: []
       },
@@ -297,10 +310,13 @@ export default {
   methods: {
     getCart () {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
+      this.isLoading = true
       this.$http
         .get(url)
         .then((response) => {
           this.cart = response.data.data
+          console.log(response)
+          this.isLoading = false
         })
         .catch((err) => {
           alert(err.data.message)
@@ -352,6 +368,9 @@ export default {
         .catch((err) => {
           alert(err.data.message)
         })
+    },
+    redirect () {
+      this.$router.push('/products')
     },
     createOrder () {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/order`

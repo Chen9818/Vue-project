@@ -95,7 +95,6 @@ export default {
           this.products = products
           this.pagination = pagination
           this.isLoading = false
-          console.log(this.pagination.current_page)
         })
         .catch((err) => {
           alert(err.data.message)
@@ -126,7 +125,6 @@ export default {
       this.$http.post(url, { data: cart }).then((response) => {
         alert(response.data.message)
         this.loadingStatus.loadingItem = ''
-        // this.getCart();
       }).catch((err) => {
         alert(err.data.message)
       })
