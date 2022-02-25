@@ -114,7 +114,7 @@
 </template>
 
 <script>
-import bootstrap from 'bootstrap'
+import Modal from 'bootstrap/js/dist/modal'
 let productModal = ''
 
 export default {
@@ -126,7 +126,10 @@ export default {
     }
   },
   mounted () {
-    productModal = bootstrap.Modal(document.getElementById('productModal'))
+    productModal = new Modal(this.$refs.modal, {
+      keyboard: false,
+      backdrop: 'static'
+    })
   },
   methods: {
     updateProduct () {

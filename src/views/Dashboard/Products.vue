@@ -93,12 +93,13 @@
               :product="tempProduct"
               :is-new="isNew"
               @update="showProduct"
+              ref="modal"
             ></ProductModal>
             <!--刪除-->
-            <DeleteProductModal
+            <!-- <DeleteProductModal
               :item="tempProduct"
               @update="showProduct"
-            ></DeleteProductModal>
+            ></DeleteProductModal> -->
           </div>
           <div class="col-md-4">
             <h2>單一產品細節</h2>
@@ -157,8 +158,8 @@
 <script>
 import PaginationView from '@/components/PaginationView.vue'
 import ProductModal from '@/components/admin/ProductModal.vue'
-import DeleteProductModal from '@/components/admin/DeleteProductModal.vue'
-const productModal = ''
+// import DeleteProductModal from '@/components/admin/DeleteProductModal.vue'
+// const productModal = ''
 const delProductModal = ''
 
 export default {
@@ -176,8 +177,8 @@ export default {
   },
   components: {
     PaginationView,
-    ProductModal,
-    DeleteProductModal
+    ProductModal
+    // DeleteProductModal
   },
   methods: {
     showProduct (page = 1) {
@@ -204,11 +205,11 @@ export default {
           imagesUrl: []
         }
         this.isNew = true
-        productModal.show()
+        this.$refs.modal.openModal()
       } else if (isNew === 'edit') {
         this.tempProduct = JSON.parse(JSON.stringify(item))
         this.isNew = false
-        productModal.show() // show出modal，hide隱藏
+        this.$refs.modal.openModal() // show出modal，hide隱藏
       } else if (isNew === 'delete') {
         this.tempProduct = JSON.parse(JSON.stringify(item))
         delProductModal.show()
