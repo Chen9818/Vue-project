@@ -45,16 +45,17 @@ export default {
   },
   methods: {
     signIn () {
-      const api = `${process.env.VUE_APP_API}admin/signin`
+      const url = `${process.env.VUE_APP_API}admin/signin`
       this.$http
-        .post(api, this.user)
+        .post(url, this.user)
         .then((response) => {
           const { token, expired } = response.data
           document.cookie = `hexToken=${token};expires=${new Date(expired)};`
           this.$router.push('/admin/products')
         })
         .catch((err) => {
-          alert(err.data.message)
+          alert(err)
+          console.log(err)
         })
     }
   }

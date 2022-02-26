@@ -83,11 +83,6 @@
               </tbody>
             </table>
             <p>此頁有 <span>{{ showProducts.length }}</span> 項產品</p>
-            <!--分頁元件-->
-            <!-- <pagination
-              :pages="pagination"
-              @emit-pages="showProduct"
-            ></pagination> -->
             <!--新增、編輯-->
             <ProductModal
               :product="tempProduct"
@@ -96,10 +91,11 @@
               ref="modal"
             ></ProductModal>
             <!--刪除-->
-            <!-- <DeleteProductModal
+            <DeleteProductModal
               :item="tempProduct"
               @update="showProduct"
-            ></DeleteProductModal> -->
+              ref="delModal"
+            ></DeleteProductModal>
           </div>
           <div class="col-md-4">
             <h2>單一產品細節</h2>
@@ -158,9 +154,7 @@
 <script>
 import PaginationView from '@/components/PaginationView.vue'
 import ProductModal from '@/components/admin/ProductModal.vue'
-// import DeleteProductModal from '@/components/admin/DeleteProductModal.vue'
-// const productModal = ''
-const delProductModal = ''
+import DeleteProductModal from '@/components/admin/DeleteProductModal.vue'
 
 export default {
   data () {
@@ -177,8 +171,8 @@ export default {
   },
   components: {
     PaginationView,
-    ProductModal
-    // DeleteProductModal
+    ProductModal,
+    DeleteProductModal
   },
   methods: {
     showProduct (page = 1) {
@@ -212,7 +206,7 @@ export default {
         this.$refs.modal.openModal() // show出modal，hide隱藏
       } else if (isNew === 'delete') {
         this.tempProduct = JSON.parse(JSON.stringify(item))
-        delProductModal.show()
+        this.$refs.delModal.openModal()
       }
     }
   },

@@ -1,5 +1,6 @@
+
 <template>
-  <div id="delProductModal" ref="dmodal" class="modal fade" tabindex="-1" aria-labelledby="delProductModalLabel"
+  <div id="delProductModal" ref="delModal" class="modal fade" tabindex="-1" aria-labelledby="delProductModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content border-0">
@@ -25,3 +26,41 @@
     </div>
   </div>
 </template>
+
+<script>
+import Modal from 'bootstrap/js/dist/modal'
+let delProductModal = ''
+
+export default {
+  props: ['item', 'currentPage'],
+  data () {
+    return {
+      // editItem: this.item,
+      modal: null
+    }
+  },
+  mounted () {
+    delProductModal = new Modal(this.$refs.delModal, {
+      keyboard: false,
+      backdrop: 'static'
+    })
+  },
+  methods: {
+    delProduct () {
+      this.$http.delete(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/product/${this.item.id}`)
+        .then((response) => {
+          this.hideModal()
+          this.$emit('update', this.currentPage)
+        }).catch((error) => {
+          alert(error.data.message)
+        })
+    },
+    openModal () {
+      delProductModal.show()
+    },
+    hideModal () {
+      delProductModal.hide()
+    }
+  }
+}
+</script>
