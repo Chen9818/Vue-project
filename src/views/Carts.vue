@@ -168,7 +168,7 @@
         </div>
       </div>
     </ul>
-
+    <!--訂購人資訊-->
     <div class="w-50 mx-auto mt-5 mb-3" style="border-bottom: 1px solid #000;">
         <h1>訂購人資訊</h1>
     </div>
@@ -269,7 +269,6 @@
         </div>
       </Form>
     </div>
-
     <FooterView></FooterView>
   </div>
 </template>
@@ -315,7 +314,6 @@ export default {
         .get(url)
         .then((response) => {
           this.cart = response.data.data
-          console.log(response)
           this.isLoading = false
         })
         .catch((err) => {

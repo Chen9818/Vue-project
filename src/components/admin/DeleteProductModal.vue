@@ -35,7 +35,6 @@ export default {
   props: ['item', 'currentPage'],
   data () {
     return {
-      // editItem: this.item,
       modal: null
     }
   },

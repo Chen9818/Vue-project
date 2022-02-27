@@ -92,7 +92,6 @@
   </div>
 </template>
 <script>
-// @ is an alias to /src
 import FooterView from '@/components/FooterView.vue'
 import NavbarView from '@/components/NavbarView.vue'
 
@@ -106,17 +105,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// #app{
-//   width: 100%;
-// }
 .home {
   width: 100%;
   height: 100%;
-  // background: #ccc;
 }
-// #toggle:checked + .main-header {
-//   transform: scaleY(5);
-// }
 
 .main-image {
   background: url(../assets/pic/main-page/main-img.png);
@@ -277,7 +269,6 @@ export default {
         text-align: center;
         padding: 15px;
         box-sizing: border-box;
-        // line-height: none;
       }
     }
   }
@@ -326,7 +317,6 @@ export default {
   .main-header {
     .container {
       .main-nav {
-        // display: none;
         height: 0;
         width: 0;
         overflow: hidden;
