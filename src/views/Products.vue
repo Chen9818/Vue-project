@@ -33,7 +33,10 @@
                     <i
                     class="fas fa-spinner fa-pulse"
                     v-if="loadingStatus.loadingItem === item.id"
-                  ></i>查看更多</button>
+                    ></i>
+                    查看更多
+                  </button>
+
                   <button
                   type="button"
                   class="btn btn-outline-danger"
@@ -101,19 +104,7 @@ export default {
         })
     },
     getProduct (id) {
-      this.isLoading = true
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/product/${id}`
-      this.loadingStatus.loadingItem = id
-      this.$http
-        .get(url)
-        .then((response) => {
-          this.loadingStatus.loadingItem = ''
-          this.product = response.data.product
-          this.isLoading = false
-        })
-        .catch((err) => {
-          alert(err.data.message)
-        })
+      this.$router.push(`/product/${id}`)
     },
     addToCart (id, qty = 1) {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`

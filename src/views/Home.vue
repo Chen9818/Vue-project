@@ -161,12 +161,14 @@ export default {
 }
 .info-part {
   background: #ccc;
-  padding: 100px;
   z-index: -1;
   .info {
+    margin: auto;
+    justify-content: center;
     display: flex;
+    width: 80%;
     font-size: 25px;
-    background-color: #fff;
+    background: #fff;
     border-radius: 10px;
     &:first-child {
       margin-bottom: 15vh;
