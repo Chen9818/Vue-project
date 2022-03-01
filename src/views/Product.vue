@@ -28,7 +28,6 @@ export default {
         .get(url)
         .then((response) => {
           this.product = response.data.product
-          console.log(this.product)
           this.isLoading = false
         })
         .catch((err) => {

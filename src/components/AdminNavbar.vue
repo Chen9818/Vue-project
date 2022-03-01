@@ -19,7 +19,7 @@
               <router-link class="nav-link" to="/">回前台首頁</router-link>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link" @click.prevent="signout">登出</a>
+              <a href="#" class="nav-link" @click="$emit('signOut')">登出</a>
             </li>
         </ul>
       </div>
@@ -29,11 +29,7 @@
 
 <script>
 export default {
-  methods: {
-    signout () {
-      this.$emit('signout')
-    }
-  }
+  emits: ['signOut']
 }
 </script>
 

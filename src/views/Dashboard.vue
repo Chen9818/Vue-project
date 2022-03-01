@@ -1,5 +1,5 @@
 <template>
-  <AdminNavbar @signout='signout'></AdminNavbar>
+  <AdminNavbar @signOut='signOut'></AdminNavbar>
   <router-view></router-view>
 </template>
 
@@ -41,7 +41,7 @@ export default {
         this.$router.push('/login')
       }
     },
-    signout () {
+    signOut () {
       document.cookie = 'hexToken=;expires=;'
       alert('token 已清除')
       this.$router.push('/login')

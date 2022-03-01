@@ -26,9 +26,12 @@
             required
           />
         </div>
-        <div class="text-end mt-4">
+        <div class="text-end mt-4 d-flex justify-content-around">
           <button class="btn btn-lg btn-primary btn-block" type="submit">
             登入
+          </button>
+          <button class="btn btn-lg btn-primary btn-block" type="submit" @click="mainPage()">
+            回前台首頁
           </button>
         </div>
       </div>
@@ -54,8 +57,11 @@ export default {
           this.$router.push('/admin/products')
         })
         .catch((err) => {
-          alert(err)
+          alert(err.data.message)
         })
+    },
+    mainPage () {
+      this.$router.push('/')
     }
   }
 }

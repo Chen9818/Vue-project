@@ -1,21 +1,18 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-
 import 'bootstrap'
-
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-
 import Loading from 'vue3-loading-overlay'
 import 'vue3-loading-overlay/dist/vue3-loading-overlay.css'
-
 import {
   Form, Field, ErrorMessage, defineRule, configure
 } from 'vee-validate'
 import AllRules from '@vee-validate/rules'
 import { localize, setLocale } from '@vee-validate/i18n'
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
+import { date, currency } from './methods/filters'
 
 Object.keys(AllRules).forEach((rule) => {
   defineRule(rule, AllRules[rule])
@@ -35,4 +32,8 @@ app.component('Loading', Loading)
 app.component('Form', Form)
 app.component('Field', Field)
 app.component('ErrorMessage', ErrorMessage)
+app.config.globalProperties.$filters = {
+  date,
+  currency
+}
 app.mount('#app')

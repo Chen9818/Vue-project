@@ -105,6 +105,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/base/all.scss";
+
 .home {
   width: 100%;
   height: 100%;
@@ -120,7 +122,7 @@ export default {
   z-index: -1;
   position: relative;
   .main-txt {
-    background: rgba(140, 140, 224, 0.5);
+    background: $base-color;
     border-radius: 50%;
     color: #fff;
     height: 30%;

@@ -93,7 +93,7 @@
             <!--刪除-->
             <DeleteProductModal
               :item="tempProduct"
-              @update="showProduct"
+              @del-item="delProduct"
               ref="delModal"
             ></DeleteProductModal>
           </div>
@@ -208,6 +208,15 @@ export default {
         this.tempProduct = JSON.parse(JSON.stringify(item))
         this.$refs.delModal.openModal()
       }
+    },
+    delProduct () {
+      this.$http.delete(`${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`)
+        .then((response) => {
+          this.$refs.delModal.hideModal()
+          this.showProduct(this.pagination.current_page)
+        }).catch((error) => {
+          alert(error.data.message)
+        })
     }
   },
   mounted () {

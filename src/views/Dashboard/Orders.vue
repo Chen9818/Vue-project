@@ -129,11 +129,9 @@ export default {
         const orderComponent = this.$refs.orderModal
         orderComponent.hideModal()
         this.getOrders(this.currentPage)
-        // this.$httpMessageState(response, '更新付款狀態');
       }).catch((error) => {
         this.isLoading = false
-        alert(error)
-        // this.$httpMessageState(error.response, '錯誤訊息');
+        alert(error.data.message)
       })
     },
     delOrder () {
@@ -147,12 +145,15 @@ export default {
       }).catch((error) => {
         this.isLoading = false
         alert(error.data.message)
-        // this.$httpMessageState(error.response, '錯誤訊息');
       })
     }
   },
   created () {
-    this.getOrders()
+    const token = document.cookie.replace(
+      /(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1'
+    )
+    this.$http.defaults.headers.common.Authorization = token
+    if (token) this.getOrders()
   }
 }
 </script>
