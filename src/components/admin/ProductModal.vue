@@ -121,8 +121,8 @@ export default {
   props: ['product', 'isNew'],
   data () {
     return {
-      editProduct: this.product,
-      modal: null
+      modal: null,
+      editProduct: {}
     }
   },
   mounted () {
@@ -130,6 +130,11 @@ export default {
       keyboard: false,
       backdrop: 'static'
     })
+  },
+  watch: {
+    product () {
+      this.editProduct = this.product
+    }
   },
   methods: {
     updateProduct () {
