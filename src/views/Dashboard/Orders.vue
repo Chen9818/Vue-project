@@ -1,6 +1,6 @@
 <template>
 <Loading :active="isLoading"></Loading>
-<table class="table mt-4">
+<table class="table table-hover mt-4">
   <thead>
     <tr>
       <th>購買時間</th>
@@ -104,7 +104,6 @@ export default {
       }).catch((error) => {
         this.isLoading = false
         alert(error)
-        // this.$httpMessageState(error.response, '錯誤訊息');
       })
     },
     openModal (item) {
@@ -135,7 +134,7 @@ export default {
       })
     },
     delOrder () {
-      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/order/${this.tempOrder.id}`
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/order/${this.tempOrder.id}`
       this.isLoading = true
       this.$http.delete(url).then(() => {
         this.isLoading = false

@@ -10,7 +10,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-              <router-link class="nav-link" to="/admin/products">後台產品列</router-link>
+              <router-link class="nav-link" to="/admin/products">後台產品列表</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/admin/coupon">優惠券列表</router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link" to="/admin/orders">後台訂單</router-link>
