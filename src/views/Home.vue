@@ -3,7 +3,7 @@
     <NavbarView></NavbarView>
     <section class="main-image">
       <div
-        class="main-txt"
+        class="main-txt d-flex align-items-center"
         data-aos="fade-zoom-in"
         data-aos-easing="ease-in-back"
         data-aos-delay="1000"
@@ -12,6 +12,7 @@
         ~好眠~<br />讓您一夜好眠
       </div>
     </section>
+    <section style="height:3vh;width:100%;background:#ccc"></section>
     <section class="main-banner">
       <div class="banner-txt">
         <h1>滿意您的睡眠品質嗎?</h1>
@@ -26,7 +27,7 @@
         data-aos-once="true"
       >
         <div class="info-img">
-          <img src="@/assets/pic/main-page/info-img.png" alt="使用枕頭目的" />
+          <img class="img-1" src="@/assets/pic/main-page/info-img.png" alt="使用枕頭目的" />
         </div>
         <div class="info-txt">
           <h3>使用枕頭的目的</h3>
@@ -53,7 +54,7 @@
           </p>
         </div>
         <div class="info-img">
-          <img src="@/assets/pic/main-page/info-img2.png" alt="如何挑選枕頭" />
+          <img class="img-2" src="@/assets/pic/main-page/info-img2.png" alt="如何挑選枕頭" />
         </div>
       </div>
     </section>
@@ -106,6 +107,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/base/all.scss";
+@import "aos/src/sass/aos.scss";
 
 .home {
   width: 100%;
@@ -118,7 +120,7 @@ export default {
   background-repeat: no-repeat;
   background-position: center center;
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   z-index: -1;
   position: relative;
   .main-txt {
@@ -126,7 +128,7 @@ export default {
     border-radius: 50%;
     color: #fff;
     height: 30%;
-    width: 50%;
+    width: 60%;
     top: 100px;
     bottom: 0;
     left: 0;
@@ -145,6 +147,7 @@ export default {
   .banner-txt {
     background: url(../assets/pic/main-page/main-img2.png);
     background-size: cover;
+    background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center center;
     z-index: -1;
@@ -162,6 +165,7 @@ export default {
   }
 }
 .info-part {
+  padding: 1.5rem;
   background: #ccc;
   z-index: -1;
   .info {
@@ -180,8 +184,13 @@ export default {
       img {
         width: 100%;
         height: 100%;
-        border-radius: 10px;
         object-fit: cover;
+      }
+      .img-1{
+        border-radius: 10px 0 0 10px;
+      }
+      .img-2{
+        border-radius: 0 10px 10px 0;
       }
     }
     .info-txt {
@@ -202,22 +211,26 @@ export default {
 }
 .product-view {
   text-align: center;
-  height: 10vh;
+  height: 15vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(140, 140, 224);
+  background-color: $base-color;
   color: #fff;
   padding: 10px;
-  font-size: 30px;
+  h2{
+    font-size: 55px;
+  }
 }
 .product-type {
+  // padding: 1.5rem;
   width: 100%;
   background: #ccc;
   .items {
     width: 70%;
-    padding-top: 10vh;
-    padding-bottom: 10vh;
+    padding: 1.5rem;
+    // padding-top: 10vh;
+    // padding-bottom: 10vh;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

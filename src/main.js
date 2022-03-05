@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import 'bootstrap'
+import AOS from 'aos'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Loading from 'vue3-loading-overlay'
@@ -24,6 +25,8 @@ configure({
 })
 // 設定預設語系
 setLocale('zh_TW')
+
+AOS.init()
 
 const app = createApp(App)
 app.use(router)

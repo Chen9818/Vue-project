@@ -67,8 +67,15 @@
   ref="orderModal"
   @update-paid="updatePaid"
 ></OrderModal>
-<DeleteProductModal :item="tempOrder" ref="delModal" @del-item="delOrder"></DeleteProductModal>
-<PaginationView :pages="pagination" @emitPages="getOrders"></PaginationView>
+<DeleteProductModal
+  :item="tempOrder" ref="delModal"
+  @del-item="delOrder"
+></DeleteProductModal>
+<PaginationView
+  class="d-flex justify-content-center"
+  :pages="pagination"
+  @emitPages="getOrders"
+></PaginationView>
 </template>
 
 <script>

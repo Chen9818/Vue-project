@@ -83,6 +83,11 @@
               </tbody>
             </table>
             <p>此頁有 <span>{{ showProducts.length }}</span> 項產品</p>
+            <PaginationView
+              class="d-flex justify-content-center"
+              :pages="pagination"
+              @emit-pages="showProduct"
+            ></PaginationView>
             <!--新增、編輯-->
             <ProductModal
               :product="tempProduct"
@@ -145,10 +150,6 @@
       </div>
     </div>
   </div>
-  <PaginationView
-  :pages="pagination"
-  @emit-pages="showProduct"
-  ></PaginationView>
 </template>
 
 <script>

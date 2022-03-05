@@ -38,6 +38,7 @@
 <CouponModal :coupon="tempCoupon" :is-new="isNew" ref="couponModal" @update-coupon="updateCoupon"></CouponModal>
 <DeleteProductModal :item="tempCoupon" ref="delModal" @del-item="delCoupon"></DeleteProductModal>
 <PaginationView
+class="d-flex justify-content-center"
 :pages="pagination"
 @emitPages="getCoupon"
 ></PaginationView>

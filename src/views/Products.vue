@@ -1,8 +1,19 @@
 <template>
-  <div class="products">
+  <div class="products" style="background:#ccc">
     <Loading :active="isLoading"></Loading>
     <NavbarView></NavbarView>
-      <div class="container" style="padding-top:100px">
+    <div class="main-img">
+      <h3>商品列表</h3>
+    </div>
+    <ul class="d-flex">
+      <li><button type="button" class="btn btn-primary">Primary</button></li>
+      <li><button type="button" class="btn btn-primary">Primary</button></li>
+      <li><button type="button" class="btn btn-primary">Primary</button></li>
+      <li><button type="button" class="btn btn-primary">Primary</button></li>
+      <li><button type="button" class="btn btn-primary">Primary</button></li>
+      <li><button type="button" class="btn btn-primary">Primary</button></li>
+    </ul>
+      <div class="container" style="padding: top 1.5rem;">
         <div class="row ">
           <div class="col-6 col-md-4 d-flex flex-wrap" v-for="item in products" :key="item.id">
             <div class="card mx-auto my-5" style="width: 100%;">
@@ -125,6 +136,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .main-img{
+  background: url(../assets/pic/main-page/main-img.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  width: 100%;
+  height: 50vh;
+  z-index: 2;
+  // padding-top: 115px;
+  h3{
+    font-size: 150px;
+    // text-align: center;
+    // display: flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  }
   .card {
   opacity: 0.8;
   img {
