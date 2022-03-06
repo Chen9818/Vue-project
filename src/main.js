@@ -14,6 +14,7 @@ import AllRules from '@vee-validate/rules'
 import { localize, setLocale } from '@vee-validate/i18n'
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
 import { date, currency } from './methods/filters'
+import VueGoogleMaps from '@fawmi/vue-google-maps'
 
 Object.keys(AllRules).forEach((rule) => {
   defineRule(rule, AllRules[rule])
@@ -30,6 +31,11 @@ AOS.init()
 
 const app = createApp(App)
 app.use(router)
+app.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyCWbo15WBNGGpWAWreL35JLWqvefnh1U58'
+  }
+})
 app.use(VueAxios, axios)
 app.component('Loading', Loading)
 app.component('Form', Form)

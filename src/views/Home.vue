@@ -306,6 +306,9 @@ export default {
         text-align: center;
         padding: 15px;
         box-sizing: border-box;
+        p{
+          line-height: 1.2rem;
+        }
       }
     }
   }

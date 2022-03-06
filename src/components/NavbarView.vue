@@ -34,10 +34,10 @@
             <router-link class="nav-link fs-3 text-center" to="/products">商品列表</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link fs-3 text-center" to="/products">關於我們</router-link>
+            <router-link class="nav-link fs-3 text-center" to="/about">關於我們</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link fs-3 text-center" to="/products">常見問答</router-link>
+            <router-link class="nav-link fs-3 text-center" to="/question">常見問答</router-link>
           </li>
         </ul>
       </div>

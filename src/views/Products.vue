@@ -1,21 +1,18 @@
 <template>
-  <div class="products" style="background:#ccc">
+  <div class="products w-100" style="background:#ccc">
     <Loading :active="isLoading"></Loading>
-    <NavbarView></NavbarView>
-    <div class="main-img">
-      <h3>商品列表</h3>
-    </div>
-    <ul class="d-flex">
-      <li><button type="button" class="btn btn-primary">Primary</button></li>
-      <li><button type="button" class="btn btn-primary">Primary</button></li>
-      <li><button type="button" class="btn btn-primary">Primary</button></li>
-      <li><button type="button" class="btn btn-primary">Primary</button></li>
-      <li><button type="button" class="btn btn-primary">Primary</button></li>
-      <li><button type="button" class="btn btn-primary">Primary</button></li>
+    <NavbarView class="w-100"></NavbarView>
+    <MainImage :title="MainTitle"></MainImage>
+    <ul class="filter d-flex justify-content-center pt-5">
+      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px">全部</button></li>
+      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px">乳膠枕</button></li>
+      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px">絲絨枕</button></li>
+      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px">機能枕</button></li>
+      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px">兒童枕</button></li>
     </ul>
-      <div class="container" style="padding: top 1.5rem;">
+      <div class="container" style="">
         <div class="row ">
-          <div class="col-6 col-md-4 d-flex flex-wrap" v-for="item in products" :key="item.id">
+          <div class="col-12 col-md-4 d-flex flex-wrap" v-for="item in products" :key="item.id">
             <div class="card mx-auto my-5" style="width: 100%;">
               <img
                 :src="item.imageUrl"
@@ -26,14 +23,17 @@
                 <div class="d-flex">
                   <h4 class="card-title">
                     {{ item.title }}
-                  <span class="badge bg-primary ms-2">{{ item.category }}</span>
+                  <span class="badge bg-base ms-2">{{ item.category }}</span>
                   </h4>
                 </div>
-                <p class="card-text"/>
+                  <div class="card-text d-flex justify-content-between" style="font-size:1.2rem">
                   <p class="text-decoration-line-through">
                     原價:NT{{ item.origin_price }}
                   </p>
-                  特價:NT{{ item.price }}
+                  <p style="color:#ff0000">
+                    特價:NT{{ item.price }}
+                  </p>
+                  </div>
                 <div class="d-flex justify-content-between">
                   <button
                   type="button"
@@ -67,6 +67,7 @@
       <PaginationView
       :pages="pagination"
       @emit-pages="getProducts"
+      class="d-flex justify-content-center"
       ></PaginationView>
     <FooterView></FooterView>
   </div>
@@ -75,6 +76,7 @@
 <script>
 import FooterView from '@/components/FooterView.vue'
 import NavbarView from '@/components/NavbarView.vue'
+import MainImage from '@/components/MainImage.vue'
 import PaginationView from '@/components/PaginationView.vue'
 
 export default {
@@ -87,13 +89,15 @@ export default {
       },
       isLoading: false,
       product: {},
-      pagination: {}
+      pagination: {},
+      MainTitle: '產品列表'
     }
   },
   components: {
     FooterView,
     NavbarView,
-    PaginationView
+    PaginationView,
+    MainImage
   },
   mounted () {
     this.getProducts()
@@ -136,25 +140,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .main-img{
-  background: url(../assets/pic/main-page/main-img.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  width: 100%;
-  height: 50vh;
-  z-index: 2;
-  // padding-top: 115px;
-  h3{
-    font-size: 150px;
-    // text-align: center;
-    // display: flex;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+@import "@/assets/base/all.scss";
+
+  .filter{
+    width: 50%;
+    margin: auto;
+    li{
+      margin:0 2px 0 2px;
+    }
   }
   .card {
   opacity: 0.8;
