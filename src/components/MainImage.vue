@@ -1,5 +1,5 @@
 <template>
-  <div class="main-img d-sm-block d-none">
+  <div class="main-img w-100">
     <h3>{{title}}</h3>
   </div>
 </template>

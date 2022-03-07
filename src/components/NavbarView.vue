@@ -1,6 +1,6 @@
 <template>
-  <nav class="navbar navbar-expand-lg w-100 position-fixed">
-    <div class="container-fluid">
+  <nav class="navbar position-fixed w-100">
+    <div class="container">
       <a class="navbar-brand" href="#">
         <img src="@/assets/logo.png" alt="logo" />
       </a>
@@ -57,6 +57,7 @@
 .navbar {
   background-color: $base-color;
   z-index: 2;
+  // width: 100%;
   .navbar-brand img {
     width: 80px;
     height: 80px;

@@ -1,7 +1,7 @@
 <template>
   <div class="products w-100" style="background:#ccc">
     <Loading :active="isLoading"></Loading>
-    <NavbarView class="w-100"></NavbarView>
+    <NavbarView></NavbarView>
     <MainImage :title="MainTitle"></MainImage>
     <ul class="filter d-flex justify-content-center pt-5">
       <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px">全部</button></li>
@@ -10,8 +10,8 @@
       <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px">機能枕</button></li>
       <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px">兒童枕</button></li>
     </ul>
-      <div class="container" style="">
-        <div class="row ">
+      <div class="container">
+        <div class="row">
           <div class="col-12 col-md-4 d-flex flex-wrap" v-for="item in products" :key="item.id">
             <div class="card mx-auto my-5" style="width: 100%;">
               <img

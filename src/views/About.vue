@@ -1,8 +1,8 @@
 <template>
+    <div class="w-100" style="background:#ccc">
     <Loading :active="isLoading"></Loading>
-    <NavbarView class="w-100"></NavbarView>
+    <NavbarView></NavbarView>
     <MainImage :title="MainTitle"></MainImage>
-    <div style="height:2000px">
       <div class="history">
         <h3>創立宗旨</h3>
         <div>
@@ -12,16 +12,12 @@
       <div class="location">
         <h3>實體店面</h3>
         <div>
-          <h4>忠孝店</h4>
-
-        </div>
-        <div style="width:1500px;height:80%">
-          <!-- <h4>民權店</h4> -->
+          <h4>信義店</h4>
           <GMapMap
             :center="center"
-            :zoom="7"
+            :zoom="17"
             map-type-id="terrain"
-            style="width:500px;height:80%"
+            class="a"
           >
             <GMapCluster>
               <GMapMarker
@@ -30,14 +26,33 @@
                   :position="m.position"
                   :clickable="true"
                   :draggable="true"
-                  style="width:500px;height:80%"
+                  @click="center=m.position"
+              />
+            </GMapCluster>
+          </GMapMap>
+        </div>
+        <div style="width:1500px;height:80%">
+          <h4>民權店</h4>
+          <GMapMap
+            :center="center1"
+            :zoom="17"
+            map-type-id="terrain"
+            class="a"
+          >
+            <GMapCluster>
+              <GMapMarker
+                  :key="index"
+                  v-for="(m, index) in markers"
+                  :position="m.position"
+                  :clickable="true"
+                  :draggable="true"
                   @click="center=m.position"
               />
             </GMapCluster>
           </GMapMap>
         </div>
       </div>
-      <div style="width:500px;height:80px">1111</div>
+      <!-- <div style="width:500px;height:80px">1111</div> -->
     </div>
     <FooterView></FooterView>
 </template>
@@ -53,19 +68,23 @@ export default {
     return {
       MainTitle: '關於我們',
       isLoading: false,
-      center: { lat: 51.093048, lng: 6.842120 },
+      center: { lat: 25.033953570933967, lng: 121.56509967426602 },
+      center1: { lat: 25.133953570933967, lng: 121.66509967426602 },
       markers: [
         {
+          id: 1,
           position: {
-            lat: 51.093048, lng: 6.842120
+            lat: 25.133953570933967,
+            lng: 121.66509967426602
+          }
+        },
+        {
+          id: 2,
+          position: {
+            lat: 25.033953570933967,
+            lng: 121.56509967426602
           }
         }
-        // {
-        //   position: {
-        //     lat: 59.093048, lng: 8.842120
-        //   }
-        // }
-        // Along list of clusters
       ]
     }
   },
@@ -79,5 +98,8 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/base/all.scss";
-
+// .a{
+//   height:80px;
+//   width:80px
+// }
 </style>
