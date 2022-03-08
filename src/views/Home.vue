@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home w-100">
     <NavbarView></NavbarView>
     <section class="main-image">
       <div
@@ -111,7 +111,7 @@ export default {
 
 .home {
   width: 100%;
-  height: 100%;
+  // height: 100%;
 }
 
 .main-image {

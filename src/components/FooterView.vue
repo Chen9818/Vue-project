@@ -15,4 +15,10 @@ footer{
   background-color: $base-color;
   color: #fff;
 }
+
+@media (max-width: 500px) {
+  footer h3,.nav-link{
+    font-size: .5rem;
+  }
+}
 </style>
