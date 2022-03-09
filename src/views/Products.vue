@@ -3,13 +3,26 @@
     <Loading :active="isLoading"></Loading>
     <NavbarView></NavbarView>
     <MainImage :title="MainTitle"></MainImage>
-    <ul class="filter d-flex justify-content-center pt-5">
-      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px">全部</button></li>
-      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px">乳膠枕</button></li>
-      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px">絲絨枕</button></li>
-      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px">機能枕</button></li>
-      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px">兒童枕</button></li>
+    <ul class="filter d-flex justify-content-center pt-5 d-none d-xl-flex">
+      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px" @click="getProducts()">全部</button></li>
+      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px" @click="getFilter('乳膠枕')">乳膠枕</button></li>
+      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px" @click="getFilter('絲絨枕')">絲絨枕</button></li>
+      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px" @click="getFilter('機能枕')">機能枕</button></li>
+      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px" @click="getFilter('兒童枕')">兒童枕</button></li>
     </ul>
+    <div class="dropdown d-block d-xl-none d-flex justify-content-center mt-5">
+      <button class="btn btn-base dropdown-toggle fs-3" style="color:#fff;width:80%" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        {{filterTitle}}
+      </button>
+      <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1" style="width:80%">
+        <li class="dropdown-item fs-3" @click="getProducts()">全部</li>
+        <li class="dropdown-item fs-3" @click="getFilter('乳膠枕')">乳膠枕</li>
+        <li class="dropdown-item fs-3" @click="getFilter('絲絨枕')">絲絨枕</li>
+        <li class="dropdown-item fs-3" @click="getFilter('機能枕')">機能枕</li>
+        <li class="dropdown-item fs-3" @click="getFilter('兒童枕')">兒童枕</li>
+      </ul>
+    </div>
+
       <div class="container">
         <div class="row">
           <div class="col-12 col-md-4 d-flex flex-wrap" v-for="item in products" :key="item.id">
@@ -78,12 +91,15 @@ import FooterView from '@/components/FooterView.vue'
 import NavbarView from '@/components/NavbarView.vue'
 import MainImage from '@/components/MainImage.vue'
 import PaginationView from '@/components/PaginationView.vue'
+import emitter from '../utility/emitter'
 
 export default {
   name: 'Products',
   data () {
     return {
       products: [],
+      filterProducts: [],
+      filterTitle: '',
       loadingStatus: {
         loadingItem: ''
       },
@@ -112,6 +128,7 @@ export default {
           const { products, pagination } = response.data
           this.products = products
           this.pagination = pagination
+          this.filterTitle = '全部'
           this.isLoading = false
         })
         .catch((err) => {
@@ -121,6 +138,21 @@ export default {
     getProduct (id) {
       this.$router.push(`/product/${id}`)
     },
+    getFilter (e) {
+      this.isLoading = true
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`
+      this.$http
+        .get(url)
+        .then((response) => {
+          this.filterProducts = response.data.products
+          this.filterTitle = e
+          this.products = this.filterProducts.filter(item => item.category === e)
+          this.isLoading = false
+        })
+        .catch((err) => {
+          alert(err)
+        })
+    },
     addToCart (id, qty = 1) {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
       this.loadingStatus.loadingItem = id
@@ -129,6 +161,7 @@ export default {
         qty
       }
       this.$http.post(url, { data: cart }).then((response) => {
+        emitter.emit('cart')
         alert(response.data.message)
         this.loadingStatus.loadingItem = ''
       }).catch((err) => {
@@ -141,7 +174,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/base/all.scss";
-
   .filter{
     width: 50%;
     margin: auto;
@@ -150,17 +182,28 @@ export default {
     }
   }
   .card {
-  opacity: 0.8;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  &:hover {
-    opacity: 1;
+    opacity: 0.8;
     img {
-      border: 10px solid #fff;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    &:hover {
+      opacity: 1;
+      img {
+        border: 10px solid #fff;
+      }
     }
   }
-}
+
+// @include media-breakpoint-up(md) {
+//   .filter{
+//     display: none;
+//   }
+// }
+// @media (max-width:600px){
+//   .filter{
+//     display: none;
+//   }
+// }
 </style>

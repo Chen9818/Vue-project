@@ -8,8 +8,11 @@
       <div class="d-flex justify-content-end">
         <div class="d-md-block d-lg-none mx-4">
           <router-link class="p-4" to="/carts">
-          <h1>
+          <h1 class="position-relative">
             <i class="bi bi-cart" style="color:#fff;font-size:2.5rem"></i>
+              <span class="position-absolute fs-6 mt-2 t-op-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {{cart?.carts?.length}}
+              </span>
           </h1>
           </router-link>
         </div>
@@ -44,13 +47,47 @@
     </div>
       <div class="cart-icon d-none d-lg-block p-4">
         <router-link to="/carts">
-          <h1>
+          <h1 class="position-relative">
             <i class="bi bi-cart" style="color:#fff;font-size:3.5rem"></i>
+              <span class="position-absolute fs-6 mt-2 t-op-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {{cart?.carts?.length}}
+              </span>
           </h1>
         </router-link>
       </div>
   </nav>
 </template>
+
+<script>
+import emitter from '../utility/emitter'
+
+export default {
+  data () {
+    return {
+      cart: {}
+    }
+  },
+  methods: {
+    getCart () {
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
+      this.$http
+        .get(url)
+        .then((response) => {
+          this.cart = response.data.data
+        })
+        .catch((err) => {
+          alert(err.data.message)
+        })
+    }
+  },
+  mounted () {
+    this.getCart()
+    emitter.on('cart', () => {
+      this.getCart()
+    })
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 @import "@/assets/base/all.scss";
