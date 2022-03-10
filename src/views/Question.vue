@@ -11,7 +11,7 @@
           {{item.Q}}
         </button>
       </p>
-      <div class="collapse" :id="`${item.Q}`">
+      <div class="collapse mx-auto" :id="`${item.Q}`" style="width:70%">
         <div class="card card-body">
           {{item.A}}
         </div>

@@ -16,11 +16,11 @@
           <h2>實體店面</h2>
         </div>
         <div>
-          <h4 class="d-flex">台北信義店
-            <h5 class="d-flex align-items-end">
+          <div class="d-flex locationTitle">台北信義店
+            <span class="d-flex align-items-end d-none d-md-flex">
               (地址:台灣台北市信義區信義路五段7號)
-            </h5>
-          </h4>
+            </span>
+          </div>
           <div class="location1 w-100" >
             <GMapMap
             :center="center1"
@@ -42,11 +42,11 @@
           </div>
         </div>
         <div style="width:100%;">
-          <h4 class="d-flex">高雄夢時代店
-            <h5 class="d-flex align-items-end">
+          <div class="d-flex locationTitle">高雄夢時代店
+            <span class="d-flex align-items-end d-none d-md-flex">
               (地址:806台灣高雄市前鎮區中華五路789號)
-            </h5>
-          </h4>
+            </span>
+          </div>
           <div class="location2 w-100">
             <GMapMap
             :center="center2"
@@ -127,14 +127,17 @@ export default {
       font-size: 55px;
     }
   }
-  h4{
-    color:#fff;
+  .locationTitle{
+    color:#000;
     font-size: 2.5rem;
     width: 70%;
     margin: auto;
     margin-top: 3rem;
     padding: 5px;
-    border-bottom: 2px solid $base-color;
+    border-bottom: 2px solid #000;
+    span{
+      font-size: 1rem;
+    }
   }
   .txt{
   background: #fff;
@@ -152,6 +155,11 @@ export default {
 @media (max-width: 500px){
   .map{
   height:15rem;
+  }
+}
+@media (max-width: 830px){
+  .location h4{
+  font-size: 80%
   }
 }
 </style>

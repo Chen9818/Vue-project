@@ -25,8 +25,8 @@
 
       <div class="container">
         <div class="row">
-          <div class="col-12 col-md-4 d-flex flex-wrap" v-for="item in products" :key="item.id">
-            <div class="card mx-auto my-5" style="width: 100%;">
+          <div class="products col-12 col-md-4 d-flex flex-wrap" v-for="item in products" :key="item.id">
+            <div class="card mx-auto my-3" style="width: 100%;">
               <img
                 :src="item.imageUrl"
                 class="card-img-top"
@@ -41,10 +41,10 @@
                 </div>
                   <div class="card-text d-flex justify-content-between" style="font-size:1.2rem">
                   <p class="text-decoration-line-through">
-                    原價:NT{{ item.origin_price }}
+                    原:NT{{ item.origin_price }}
                   </p>
                   <p style="color:#ff0000">
-                    特價:NT{{ item.price }}
+                    特:NT{{ item.price }}
                   </p>
                   </div>
                 <div class="d-flex justify-content-between">
@@ -201,9 +201,10 @@ export default {
 //     display: none;
 //   }
 // }
-// @media (max-width:600px){
-//   .filter{
-//     display: none;
-//   }
-// }
+@media (max-width:600px){
+  .products{
+    width:70%;
+    margin:auto;
+  }
+}
 </style>

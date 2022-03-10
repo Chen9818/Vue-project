@@ -63,30 +63,30 @@
     </section>
     <section class="product-type">
       <div class="items">
-        <a href="#" class="item">
+        <div class="item" @click="toType('機能枕')">
           <img src="@/assets/pic/機能枕/頂級機能枕.png" alt="機能枕" />
           <div class="txt">
             <h3>機能枕</h3>
           </div>
-        </a>
-        <a href="#" class="item">
+        </div>
+        <div class="item" @click="toType('機能枕')">
           <img src="@/assets/pic/乳膠枕/頂級好眠乳膠枕.png" alt="乳膠枕" />
           <div class="txt">
             <h3>乳膠枕</h3>
           </div>
-        </a>
-        <a href="#" class="item">
+        </div>
+        <div class="item" @click="toType('機能枕')">
           <img src="@/assets/pic/絲絨枕/頂級羊毛枕.png" alt="絲絨枕" />
           <div class="txt">
             <h3>絲絨枕</h3>
           </div>
-        </a>
-        <a href="#" class="item">
+        </div>
+        <div class="item" @click="toType('機能枕')">
           <img src="@/assets/pic/兒童枕/卡納赫拉兒童枕.png" alt="兒童枕" />
           <div class="txt">
             <h3>兒童枕</h3>
           </div>
-        </a>
+        </div>
       </div>
     </section>
     <FooterView></FooterView>
@@ -95,12 +95,19 @@
 <script>
 import FooterView from '@/components/FooterView.vue'
 import NavbarView from '@/components/NavbarView.vue'
+// import emitter from '../utility/emitter'
 
 export default {
   name: 'Home',
   components: {
     FooterView,
     NavbarView
+  },
+  methods: {
+    toType (e) {
+      // emitter.emit('gg', e)
+      this.$router.push('/products')
+    }
   }
 }
 </script>

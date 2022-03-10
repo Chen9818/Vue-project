@@ -1,8 +1,8 @@
 <template>
-  <div class="carts">
+    <div class="products w-100" style="background:#ccc">
     <Loading :active="isLoading"></Loading>
     <NavbarView></NavbarView>
-    <div class="d-md-block d-none" style="margin-bottom:100px;padding-top:130px">
+    <div class="d-md-block d-none w-100" style="margin-bottom:100px;padding-top:150px">
         <div
           style="width: 80%"
           class="mx-auto mb-3 d-flex justify-content-between"
@@ -67,7 +67,7 @@
             </td>
             <td>
               <i
-                class="fas fa-trash-alt w-100"
+                class="bi bi-trash3 w-100 fs-3"
                 type="button"
                 @click="removeCartItem(item)"
                 :disabled="loadingStatus.loadingItem === item.id"
@@ -84,16 +84,16 @@
       </div>
       <div class="w-100">
         <div style="width: 80%" class="mx-auto d-flex justify-content-end">
-          <h2 v-if="cart.final_total > 0">總金額:{{ cart.final_total }}</h2>
+          <h2 v-if="cart.total > 0">總金額:{{ cart.total }}</h2>
         </div>
       </div>
     </div>
 
     <!--RWD-->
-    <ul class="d-md-none w-100 m-0" style="margin-bottom:100px;padding-top:130px">
+    <ul class="d-md-none w-100" style="padding:130px 0 0 0">
       <div
         style="width: 80%; border-bottom: 1px solid #000"
-        class="mx-auto mb-3 d-flex justify-content-between"
+        class="mx-auto d-flex justify-content-between"
       >
         <h1>購物車</h1>
         <button
@@ -111,21 +111,21 @@
           >清空購物車
         </button>
       </div>
-      <div v-if="cart.carts.length>0">
+      <div v-if="cart.carts.length>0" class="mx-auto">
         <li v-for="item in cart.carts" :key="item" class="mx-auto mb-3" style="width: 80%">
           <div class="card" style="width: 100%">
             <div class="card-body d-flex">
-              <div style="width: 100px">
+              <div style="width: 50%">
                 <div
                   style="
-                    height: 100px;
+                    height: 100%;
                     background-size: cover;
                     background-position: center;
                   "
                   :style="{ backgroundImage: `url(${item.product.imageUrl})` }"
                 ></div>
               </div>
-              <div style="width: 400px">
+              <div style="width: 50%">
                 <div class="text-center mb-3">
                   {{ item.product.title }}
                 </div>
@@ -145,7 +145,7 @@
                   <span>金額:</span>
                   {{ item.product.price * item.qty }}
                   <i
-                    class="fas fa-trash-alt px-5"
+                    class="bi bi-trash3 fs-5 px-5"
                     type="button"
                     @click="removeCartItem(item)"
                     :disabled="loadingStatus.loadingItem === item.id"
@@ -164,7 +164,7 @@
       </div>
       <div class="w-100">
         <div style="width: 80%" class="mx-auto d-flex justify-content-end">
-          <h2 v-if="cart.final_total > 0">總金額:{{ cart.final_total }}</h2>
+          <h2 v-if="cart.total > 0">總金額:{{ cart.total }}</h2>
         </div>
       </div>
     </ul>
@@ -172,7 +172,7 @@
     <div class="w-50 mx-auto mt-5 mb-3" style="border-bottom: 1px solid #000;">
         <h1>訂購人資訊</h1>
     </div>
-    <div class="mb-5 row justify-content-center">
+    <div class="mb-5 row justify-content-center w-100 mx-auto">
       <Form
         ref="form"
         class="col-md-6"
@@ -308,7 +308,7 @@ export default {
   },
   methods: {
     getCart () {
-      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
       this.isLoading = true
       this.$http
         .get(url)
@@ -322,7 +322,7 @@ export default {
     },
     updateCart (data) {
       this.loadingStatus.loadingItem = data.id
-      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${data.id}`
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${data.id}`
       const cart = {
         product_id: data.product_id,
         qty: data.qty
@@ -340,7 +340,7 @@ export default {
         })
     },
     removeCartItem (data) {
-      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${data.id}`
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${data.id}`
       this.loadingStatus.loadingItem = data.id
       this.$http
         .delete(url)
@@ -354,7 +354,7 @@ export default {
         })
     },
     deleteAllCarts (data) {
-      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/carts`
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/carts`
       this.loadingStatus.loadingItem = data
       this.$http
         .delete(url)
@@ -371,7 +371,7 @@ export default {
       this.$router.push('/products')
     },
     createOrder () {
-      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/order`
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`
       const order = this.form
       this.$http.post(url, { data: order }).then((response) => {
         alert(response.data.message)
