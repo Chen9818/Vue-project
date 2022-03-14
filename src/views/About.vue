@@ -3,17 +3,20 @@
     <Loading :active="isLoading"></Loading>
     <NavbarView></NavbarView>
     <MainImage :title="MainTitle"></MainImage>
-      <div class="history pt-5">
+      <div class="history">
         <div class="title mb-3">
-          <h2>創立宗旨</h2>
+          <h1>創立宗旨</h1>
         </div>
-        <div class="txt">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, quidem dolores! Consectetur, eum! Necessitatibus unde nisi consequatur ut vel aperiam consectetur sit, soluta, libero, esse voluptatem exercitationem labore quia totam.
+        <div class="txt fs-4 p-4">
+          「好眠」秉持著為您提供最好的睡眠相關諮詢。
+          我們的產品都經過專業研發團隊反覆測試及評估，為各種睡眠需求提供最佳的解決辦法。
+          我們相信好的睡眠品質與枕頭品質有極大的關聯。
+          我們將幫助您選對適合自己的枕頭，以改善睡眠品質。「好眠」祝您一夜好眠。
         </div>
       </div>
       <div class="location pt-3">
         <div class="title">
-          <h2>實體店面</h2>
+          <h1>實體店面</h1>
         </div>
         <div>
           <div class="d-flex locationTitle">台北信義店
@@ -116,16 +119,12 @@ export default {
 .history,.location{
   .title{
   text-align: center;
-  height: 15vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: $base-color;
   color: #fff;
-  padding: 10px;
-  h2{
-      font-size: 55px;
-    }
+  padding: .5rem;
   }
   .locationTitle{
     color:#000;
@@ -143,10 +142,11 @@ export default {
   background: #fff;
   height: 50%;
   width: 50%;
+  line-height:3rem;
   margin: auto;
+  border-radius:.5rem
   }
 }
-
 .map{
   margin-top: 1rem;
   height:25rem;
@@ -158,8 +158,11 @@ export default {
   }
 }
 @media (max-width: 830px){
-  .location h4{
-  font-size: 80%
+  .history {
+    .txt{
+      width: 80%;
+      line-height: 2rem;
+    }
   }
 }
 </style>

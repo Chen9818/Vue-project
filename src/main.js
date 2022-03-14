@@ -15,6 +15,7 @@ import AllRules from '@vee-validate/rules'
 import { localize, setLocale } from '@vee-validate/i18n'
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
 import { date, currency } from './methods/filters'
+import $httpMessageState from './methods/pushMessageState'
 import VueGoogleMaps from '@fawmi/vue-google-maps'
 
 Object.keys(AllRules).forEach((rule) => {
@@ -46,4 +47,5 @@ app.config.globalProperties.$filters = {
   date,
   currency
 }
+app.config.globalProperties.$httpMessageState = $httpMessageState
 app.mount('#app')

@@ -7,39 +7,37 @@
         <div class="img">
           <img :src="product.imageUrl" :alt="product.title">
         </div>
-        <div class="txt">
-          <h1>{{product.title}}</h1>
-          <h2>{{product.description}}</h2>
+        <div class="txt p-3">
+          <h1 class="mb-3 pb-2" style="border-bottom:2px solid #000">{{product.title}}</h1>
+          <h2>「{{product.description}}」</h2>
           <p>尺寸:{{product.content}}</p>
-          <p>原價:{{product.origin_price}}</p>
-          <p>特價:{{product.price}}</p>
-          <div class="addToCart d-flex">
-              <!-- <select
-                name="productNum"
-                class="form-select"
-                style="width: 100%"
-                v-model="product.qty"
-                :disabled="loadingStatus.loadingItem === product.id"
-              >
-                <option  :value="num" v-for="num in 8" :key="num">
-                  {{num}}
-                </option>
-              </select> -->
-              <button
+          <div class="d-flex justify-content-between">
+            <p class="fs-4" style="text-decoration: line-through">原價:{{product.origin_price}}</p>
+            <p class="fs-1" style="color:#f00">特價:{{product.price}}</p>
+            <button
               type="button"
               @click="addToCart(product.id)"
-              class="btn btn-primary">加入購物車</button>
-              <button
-              type="button"
-              class="btn btn-primary">已達購買上限</button>
+              class="btn btn-base" style="color:#fff">加入購物車</button>
           </div>
         </div>
       </div>
-      <div class="other">
+      <div class="other mt-5 mb-5">
         <div class="title">
-          <h2>相關商品{{cart}}</h2>
+          <h2>你可能會喜歡:</h2>
         </div>
-
+            <!-- <div class="toast-container" ref="toast">
+              <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header"> -->
+                  <!-- <img src="..." class="rounded me-2" alt="..."> -->
+                  <!-- <strong class="me-auto">Bootstrap</strong>
+                  <small class="text-muted">just now</small>
+                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                  See? Just like this.
+                </div>
+              </div>
+            </div> -->
         <div class="container">
           <div class="row">
             <div class="products col-12 col-md-4" v-for="item in sameProduct" :key="item.id" >
@@ -97,11 +95,13 @@
 
       </div>
     </div>
+    <FooterView></FooterView>
   </div>
 </template>
 
 <script>
 import NavbarView from '@/components/NavbarView.vue'
+import FooterView from '@/components/FooterView.vue'
 import emitter from '../utility/emitter'
 
 export default {
@@ -120,7 +120,8 @@ export default {
     }
   },
   components: {
-    NavbarView
+    NavbarView,
+    FooterView
   },
   methods: {
     getProduct () {
@@ -132,6 +133,7 @@ export default {
         .then((response) => {
           this.product = response.data.product
           this.getProducts()
+          // this.$refs.toast.show()
 
           this.isLoading = false
         })
@@ -140,8 +142,7 @@ export default {
         })
     },
     getToProduct (id) {
-      // this.$router.push('/products')
-      this.$router.push(`/product/${id}`)
+      this.$router.push(`/product/${id}`).then(() => this.getProduct())
     },
     getProducts () {
       this.isLoading = true
@@ -160,7 +161,7 @@ export default {
         })
     },
     addToCart (id, qty = 1) {
-      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
+      const url = `${process.env.VUE_APP_API}/apsi/${process.env.VUE_APP_PATH}/cart`
       this.loadingStatus.loadingItem = id
       const cart = {
         product_id: id,
@@ -173,7 +174,8 @@ export default {
         this.$router.push('/carts')
         this.loadingStatus.loadingItem = ''
       }).catch((err) => {
-        alert(err.data.message)
+        this.$httpMessageState(err.response, '錯誤訊息')
+        alert(err)
       })
     }
     // getCart (id) {
@@ -237,6 +239,7 @@ export default {
         // height: 15rem;
         width: 40%;
         background: #fff;
+        border-radius:.5rem;
         // margin-left:-33px ;
         transform: translateX(-33px);
         margin: auto;
@@ -269,6 +272,7 @@ export default {
       // height: 15rem;
       width: 100%;
       background: #fff;
+      border-radius: 0 0 .5rem .5rem;
       // margin-left:-33px ;
       transform: translateX(0);
       margin: auto;
