@@ -13,7 +13,7 @@ export default function (response, title = '更新') {
     emitter.emit('push-message', {
       style: 'danger',
       title: `${title}失敗`,
-      content: message.join('、')
+      content: message
     })
   }
 }

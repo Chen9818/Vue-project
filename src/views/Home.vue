@@ -1,6 +1,7 @@
 <template>
   <div class="home w-100">
     <NavbarView></NavbarView>
+    <!-- <ToastMessage></ToastMessage> -->
     <section class="main-image">
       <div
         class="main-txt d-flex align-items-center"
@@ -95,6 +96,7 @@
 <script>
 import FooterView from '@/components/FooterView.vue'
 import NavbarView from '@/components/NavbarView.vue'
+// import ToastMessage from '@/components/ToastMessage.vue'
 // import emitter from '../utility/emitter'
 
 export default {
@@ -102,6 +104,7 @@ export default {
   components: {
     FooterView,
     NavbarView
+    // ToastMessage
   },
   methods: {
     toType (e) {

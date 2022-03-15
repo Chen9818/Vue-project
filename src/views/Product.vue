@@ -1,7 +1,7 @@
 <template>
   <div class="product w-100" style="background:#ccc">
-    <NavbarView></NavbarView>
     <Loading :active="isLoading"></Loading>
+    <NavbarView></NavbarView>
     <div class="container" style="padding-top:13rem">
       <div class="productShow">
         <div class="img">
@@ -41,7 +41,7 @@
         <div class="container">
           <div class="row">
             <div class="products col-12 col-md-4" v-for="item in sameProduct" :key="item.id" >
-                <div class="card mx-auto my-3" style="width: 100%;">
+                <div class="card mx-auto my-3" style="width: 100%;height:100%">
                   <img
                     :src="item.imageUrl"
                     class="card-img-top"
@@ -116,7 +116,8 @@ export default {
       loadingStatus: {
         loadingItem: ''
       },
-      cart: []
+      cart: [],
+      a: 'kkk'
     }
   },
   components: {
@@ -133,8 +134,6 @@ export default {
         .then((response) => {
           this.product = response.data.product
           this.getProducts()
-          // this.$refs.toast.show()
-
           this.isLoading = false
         })
         .catch((err) => {
@@ -161,7 +160,7 @@ export default {
         })
     },
     addToCart (id, qty = 1) {
-      const url = `${process.env.VUE_APP_API}/apsi/${process.env.VUE_APP_PATH}/cart`
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
       this.loadingStatus.loadingItem = id
       const cart = {
         product_id: id,
@@ -169,13 +168,12 @@ export default {
       }
       this.$http.post(url, { data: cart }).then((response) => {
         emitter.emit('cart')
-        // alert(response.data.message)
-        // this.getCart(id)
-        this.$router.push('/carts')
         this.loadingStatus.loadingItem = ''
+        // console.log(response.data.success)
+        this.$httpMessageState(response, '加入購物車')
+        this.$router.push('/carts')
       }).catch((err) => {
-        this.$httpMessageState(err.response, '錯誤訊息')
-        alert(err)
+        this.$httpMessageState(err.response, '加入購物車')
       })
     }
     // getCart (id) {

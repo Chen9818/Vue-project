@@ -1,7 +1,8 @@
 <template>
   <div
+    ref="toast"
     class="toast-container position-fixed pe-3 top-0 end-0"
-    style="z-index: 1500"
+    style="z-index: 1500;margin-top:10rem"
   >
     <div
       v-for="(msg, key) in messages"
@@ -44,13 +45,15 @@ export default {
       setTimeout(() => {
         this.messages.shift()
       }, 6000)
+    },
+    clearToast (index) {
+      this.messages.splice(index, 1)
     }
-    // clearToast (index) {
-    //   this.messages.splice(index, 1)
-    // }
   },
   mounted () {
+    // this.$refs.toast.show()
     emitter.on('push-message', (message) => {
+      // console.log('ass')
       const { style = 'success', title, content } = message
       this.messages.push({ style, title, content })
       this.toastShow()
@@ -58,8 +61,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-@import "@/assets/base/all.scss";
-
-</style>
