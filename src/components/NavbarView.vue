@@ -91,6 +91,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/base/all.scss";
+
 .navbar {
   background-color: $base-color;
   z-index: 2;
@@ -102,13 +103,20 @@ export default {
     border-color: #fff;
     color: $text;
   }
+  .nav-item {
+    .router-link-exact-active{
+        color: #fff;
+      }
+    }
+  }
   .nav-link {
     color: #efefef;
     transform: translateY(0px);
     transition: 0.3s;
     &:hover {
-          transform: translateY(-5px);
-        }
+      transform: translateY(-5px);
+      color:#fff;
+    }
     &:after {
       content: "";
       position: absolute;
@@ -123,6 +131,5 @@ export default {
       right: 20%;
       left: 20%;
     }
-  }
 }
 </style>

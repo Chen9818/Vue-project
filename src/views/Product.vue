@@ -2,6 +2,7 @@
   <div class="product w-100" style="background:#ccc">
     <Loading :active="isLoading"></Loading>
     <NavbarView></NavbarView>
+    <!-- 特定商品部分 -->
     <div class="container" style="padding-top:13rem">
       <div class="productShow">
         <div class="img">
@@ -17,27 +18,18 @@
             <button
               type="button"
               @click="addToCart(product.id)"
-              class="btn btn-base" style="color:#fff">加入購物車</button>
+              class="btn btn-base" style="color:#fff"
+              :disabled="cart[0]?.qty>7"
+              >加入購物車</button>
           </div>
         </div>
       </div>
+
+      <!-- 相關商品部分 -->
       <div class="other mt-5 mb-5">
         <div class="title">
           <h2>你可能會喜歡:</h2>
         </div>
-            <!-- <div class="toast-container" ref="toast">
-              <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header"> -->
-                  <!-- <img src="..." class="rounded me-2" alt="..."> -->
-                  <!-- <strong class="me-auto">Bootstrap</strong>
-                  <small class="text-muted">just now</small>
-                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                  See? Just like this.
-                </div>
-              </div>
-            </div> -->
         <div class="container">
           <div class="row">
             <div class="products col-12 col-md-4" v-for="item in sameProduct" :key="item.id" >
@@ -88,11 +80,9 @@
                     </div>
                   </div>
                 </div>
-
             </div>
           </div>
         </div>
-
       </div>
     </div>
     <FooterView></FooterView>
@@ -116,8 +106,7 @@ export default {
       loadingStatus: {
         loadingItem: ''
       },
-      cart: [],
-      a: 'kkk'
+      cart: []
     }
   },
   components: {
@@ -134,10 +123,11 @@ export default {
         .then((response) => {
           this.product = response.data.product
           this.getProducts()
+          this.getCart(id)
           this.isLoading = false
         })
         .catch((err) => {
-          alert(err.data.message)
+          alert(err.response.data.message)
         })
     },
     getToProduct (id) {
@@ -156,11 +146,11 @@ export default {
           this.isLoading = false
         })
         .catch((err) => {
-          alert(err.data.message)
+          alert(err.response.data.message)
         })
     },
     addToCart (id, qty = 1) {
-      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
       this.loadingStatus.loadingItem = id
       const cart = {
         product_id: id,
@@ -169,46 +159,26 @@ export default {
       this.$http.post(url, { data: cart }).then((response) => {
         emitter.emit('cart')
         this.loadingStatus.loadingItem = ''
-        // console.log(response.data.success)
+        this.getCart(id)
         this.$httpMessageState(response, '加入購物車')
         this.$router.push('/carts')
       }).catch((err) => {
         this.$httpMessageState(err.response, '加入購物車')
       })
+    },
+    getCart (id) {
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
+      this.isLoading = true
+      this.$http
+        .get(url)
+        .then((response) => {
+          this.cart = response.data.data.carts.filter(item => item.product_id === id)
+          this.isLoading = false
+        })
+        .catch((err) => {
+          alert(err.response.data.message)
+        })
     }
-    // getCart (id) {
-    //   const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
-    //   this.isLoading = true
-    //   this.$http
-    //     .get(url)
-    //     .then((response) => {
-    //       this.cart = response.data.data.carts.product.filter(item => item.id === id)
-    //       this.isLoading = false
-    //     })
-    //     .catch((err) => {
-    //       alert(err.data.message)
-    //     })
-    // }
-    // updateCart (data) {
-    //   this.loadingStatus.loadingItem = data.id
-    //   const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${data.id}`
-    //   const cart = {
-    //     product_id: data.id,
-    //     qty: data.qty
-    //   }
-    //   this.$http
-    //     .put(url, { data: cart })
-    //     .then((response) => {
-    //       alert(response.data.message)
-    //       this.loadingStatus.loadingItem = ''
-    //       this.getCart()
-    //     })
-    //     .catch((err) => {
-    //       alert(err.data.message)
-    //       this.loadingStatus.loadingItem = ''
-    //     })
-    // }
-
   },
   mounted () {
     this.getProduct()
@@ -234,11 +204,9 @@ export default {
         }
       }
       .txt{
-        // height: 15rem;
         width: 40%;
         background: #fff;
         border-radius:.5rem;
-        // margin-left:-33px ;
         transform: translateX(-33px);
         margin: auto;
       }
@@ -267,11 +235,9 @@ export default {
       height:30rem;
     }
     .txt{
-      // height: 15rem;
       width: 100%;
       background: #fff;
       border-radius: 0 0 .5rem .5rem;
-      // margin-left:-33px ;
       transform: translateX(0);
       margin: auto;
     }

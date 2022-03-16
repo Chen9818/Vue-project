@@ -77,10 +77,11 @@
           </tr>
         </tbody>
       </table>
+      <!-- 購物車無商品 -->
       <div class="noneCart mx-auto text-center border-top border-dark " style="width: 80%" v-else>
-        <h1>購物車無商品，立刻逛逛!</h1>
+        <h1 class="my-3">購物車無商品，立刻逛逛!</h1>
         <img src="@/assets/pic/乳膠枕/好眠乳膠枕.png" alt="好眠乳膠枕">
-        <button type="button" class="btn btn-secondary d-block mx-auto mt-2" @click="redirect()">前往商品列表</button>
+        <button type="button" class="btn btn-base d-block mx-auto mt-2 fs-3 mt-5" style="color:#fff" @click="redirect()">前往商品列表</button>
       </div>
       <div class="w-100">
         <div style="width: 80%" class="mx-auto d-flex justify-content-end">
@@ -317,7 +318,7 @@ export default {
           this.isLoading = false
         })
         .catch((err) => {
-          alert(err.data.message)
+          alert(err.response.data.message)
         })
     },
     updateCart (data) {
@@ -330,12 +331,12 @@ export default {
       this.$http
         .put(url, { data: cart })
         .then((response) => {
-          alert(response.data.message)
+          this.$httpMessageState(response, '數量更新')
           this.loadingStatus.loadingItem = ''
           this.getCart()
         })
         .catch((err) => {
-          alert(err.data.message)
+          this.$httpMessageState(err.response, '數量更新')
           this.loadingStatus.loadingItem = ''
         })
     },
@@ -345,12 +346,12 @@ export default {
       this.$http
         .delete(url)
         .then((response) => {
-          alert(response.data.message)
+          this.$httpMessageState(response, '刪除')
           this.loadingStatus.loadingItem = ''
           this.getCart()
         })
         .catch((err) => {
-          alert(err.data.message)
+          this.$httpMessageState(err.response, '刪除')
         })
     },
     deleteAllCarts (data) {
@@ -359,12 +360,12 @@ export default {
       this.$http
         .delete(url)
         .then((response) => {
-          alert(response.data.message)
+          this.$httpMessageState(response, '全部刪除')
           this.loadingStatus.loadingItem = ''
           this.getCart()
         })
         .catch((err) => {
-          alert(err.data.message)
+          this.$httpMessageState(err.response, '全部刪除')
         })
     },
     redirect () {
@@ -374,11 +375,11 @@ export default {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`
       const order = this.form
       this.$http.post(url, { data: order }).then((response) => {
-        alert(response.data.message)
         this.$refs.form.resetForm() // vee validate 的方法 form reset
         this.getCart()
+        this.$router.push('/payment')
       }).catch((err) => {
-        alert(err.data.message)
+        this.$httpMessageState(err.response, '送出訂單')
       })
     }
   }

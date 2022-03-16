@@ -57,8 +57,7 @@ export default {
           this.$router.push('/admin/products')
         })
         .catch((err) => {
-          alert(err.response.data.success)
-          // this.$httpMessageState(err.response, '錯誤訊息')
+          this.$httpMessageState(err.response, '錯誤訊息')
         })
     },
     mainPage () {

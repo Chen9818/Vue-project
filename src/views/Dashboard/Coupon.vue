@@ -109,7 +109,7 @@ export default {
     },
     updateCoupon (tempCoupon) {
       this.isLoading = true
-      let url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/coupon`
+      let url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon`
       let httpMethods = 'post'
       let data = tempCoupon
 
@@ -131,7 +131,7 @@ export default {
       })
     },
     delCoupon () {
-      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/coupon/${this.tempCoupon.id}`
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon/${this.tempCoupon.id}`
       this.isLoading = true
       this.$http.delete(url).then((response) => {
         this.isLoading = false

@@ -1,7 +1,6 @@
 <template>
   <div class="home w-100">
     <NavbarView></NavbarView>
-    <!-- <ToastMessage></ToastMessage> -->
     <section class="main-image">
       <div
         class="main-txt d-flex align-items-center"
@@ -70,19 +69,19 @@
             <h3>機能枕</h3>
           </div>
         </div>
-        <div class="item" @click="toType('機能枕')">
+        <div class="item" @click="toType('乳膠枕')">
           <img src="@/assets/pic/乳膠枕/頂級好眠乳膠枕.png" alt="乳膠枕" />
           <div class="txt">
             <h3>乳膠枕</h3>
           </div>
         </div>
-        <div class="item" @click="toType('機能枕')">
+        <div class="item" @click="toType('絲絨枕')">
           <img src="@/assets/pic/絲絨枕/頂級羊毛枕.png" alt="絲絨枕" />
           <div class="txt">
             <h3>絲絨枕</h3>
           </div>
         </div>
-        <div class="item" @click="toType('機能枕')">
+        <div class="item" @click="toType('兒童枕')">
           <img src="@/assets/pic/兒童枕/卡納赫拉兒童枕.png" alt="兒童枕" />
           <div class="txt">
             <h3>兒童枕</h3>
@@ -96,20 +95,17 @@
 <script>
 import FooterView from '@/components/FooterView.vue'
 import NavbarView from '@/components/NavbarView.vue'
-// import ToastMessage from '@/components/ToastMessage.vue'
-// import emitter from '../utility/emitter'
+import emitter from '../utility/emitter'
 
 export default {
   name: 'Home',
   components: {
     FooterView,
     NavbarView
-    // ToastMessage
   },
   methods: {
     toType (e) {
-      // emitter.emit('gg', e)
-      this.$router.push('/products')
+      this.$router.push('/products').then(emitter.emit('gg', e))
     }
   }
 }
@@ -121,7 +117,6 @@ export default {
 
 .home {
   width: 100%;
-  // height: 100%;
 }
 
 .main-image {
@@ -233,14 +228,11 @@ export default {
   }
 }
 .product-type {
-  // padding: 1.5rem;
   width: 100%;
   background: #ccc;
   .items {
     width: 70%;
     padding: 1.5rem;
-    // padding-top: 10vh;
-    // padding-bottom: 10vh;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

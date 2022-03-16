@@ -15,7 +15,7 @@
         {{filterTitle}}
       </button>
       <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1" style="width:80%">
-        <li class="dropdown-item fs-3" @click="getProducts()">全部</li>
+        <li class="dropdown-item fs-3" @click="getProducts">全部</li>
         <li class="dropdown-item fs-3" @click="getFilter('乳膠枕')">乳膠枕</li>
         <li class="dropdown-item fs-3" @click="getFilter('絲絨枕')">絲絨枕</li>
         <li class="dropdown-item fs-3" @click="getFilter('機能枕')">機能枕</li>
@@ -117,6 +117,9 @@ export default {
   },
   mounted () {
     this.getProducts()
+    emitter.on('gg', (e) => {
+      this.getFilter(e)
+    })
   },
   methods: {
     getProducts (id = 1) {
@@ -132,7 +135,7 @@ export default {
           this.isLoading = false
         })
         .catch((err) => {
-          alert(err.data.message)
+          alert(err.response.data.message)
         })
     },
     getProduct (id) {
@@ -145,12 +148,13 @@ export default {
         .get(url)
         .then((response) => {
           this.filterProducts = response.data.products
+          console.log(typeof e)
           this.filterTitle = e
           this.products = this.filterProducts.filter(item => item.category === e)
           this.isLoading = false
         })
         .catch((err) => {
-          alert(err)
+          alert(err.response.data.message)
         })
     },
     addToCart (id, qty = 1) {
@@ -162,10 +166,10 @@ export default {
       }
       this.$http.post(url, { data: cart }).then((response) => {
         emitter.emit('cart')
-        alert(response.data.message)
+        this.$httpMessageState(response, '加入購物車')
         this.loadingStatus.loadingItem = ''
       }).catch((err) => {
-        alert(err.data.message)
+        this.$httpMessageState(err.response, '加入購物車')
       })
     }
   }
@@ -196,11 +200,6 @@ export default {
     }
   }
 
-// @include media-breakpoint-up(md) {
-//   .filter{
-//     display: none;
-//   }
-// }
 @media (max-width:600px){
   .products{
     width:70%;
