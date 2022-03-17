@@ -27,17 +27,10 @@
           />
         </div>
         <div class="text-end mt-4 d-flex justify-content-around">
-<<<<<<< HEAD
-          <button class="btn btn-lg btn-primary btn-block" type="submit">
-            登入
-          </button>
-          <button class="btn btn-lg btn-primary btn-block" type="submit" @click="mainPage()">
-=======
           <button class="btn btn-lg btn-base btn-block" style="color:#fff" type="submit">
             登入
           </button>
           <button class="btn btn-lg btn-base btn-block" style="color:#fff" type="submit" @click="mainPage()">
->>>>>>> d1
             回前台首頁
           </button>
         </div>
