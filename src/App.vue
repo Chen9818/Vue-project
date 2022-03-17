@@ -9,11 +9,9 @@
   padding: 0;
   margin: 0;
   list-style: none;
-  // width: 100%;
   font-family: "Noto Sans TC", sans-serif;
 }
 #app {
   width: 100%;
-  // min-width: 375px;
 }
 </style>

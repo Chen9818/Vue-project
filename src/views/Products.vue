@@ -117,9 +117,6 @@ export default {
   },
   mounted () {
     this.getProducts()
-    emitter.on('gg', (e) => {
-      this.getFilter(e)
-    })
   },
   methods: {
     getProducts (id = 1) {
@@ -148,7 +145,6 @@ export default {
         .get(url)
         .then((response) => {
           this.filterProducts = response.data.products
-          console.log(typeof e)
           this.filterTitle = e
           this.products = this.filterProducts.filter(item => item.category === e)
           this.isLoading = false
