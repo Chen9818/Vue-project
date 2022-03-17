@@ -1,5 +1,5 @@
 <template>
-  <AdminNavbar @signout='signout'></AdminNavbar>
+  <AdminNavbar @signOut='signOut'></AdminNavbar>
   <router-view></router-view>
 </template>
 
@@ -33,15 +33,14 @@ export default {
             this.checkSuccess = true
           })
           .catch((err) => {
-            alert(err.data.message)
+            this.$httpMessageState(err.response, '錯誤訊息')
             this.$router.push('/login')
           })
       } else {
-        alert('您尚未登入。')
         this.$router.push('/login')
       }
     },
-    signout () {
+    signOut () {
       document.cookie = 'hexToken=;expires=;'
       alert('token 已清除')
       this.$router.push('/login')

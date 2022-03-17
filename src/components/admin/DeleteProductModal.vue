@@ -12,13 +12,18 @@
         </div>
         <div class="modal-body">
           是否刪除
-          <strong class="text-danger">{{ item.title }}</strong> 商品(刪除後將無法恢復)。
+          <div v-if="item.title">
+            <strong class="text-danger">{{ item.title }}</strong> 商品(刪除後將無法恢復)。
+          </div>
+          <div v-else>
+            編號:<strong class="text-danger">{{ item.id }}</strong> 訂單(刪除後將無法恢復)。
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
             取消
           </button>
-          <button type="button" class="btn btn-danger" @click="delProduct">
+          <button type="button" class="btn btn-danger" @click="$emit('del-item')">
             確認刪除
           </button>
         </div>
@@ -32,12 +37,13 @@ import Modal from 'bootstrap/js/dist/modal'
 let delProductModal = ''
 
 export default {
-  props: ['item', 'currentPage'],
+  props: ['item'],
   data () {
     return {
       modal: null
     }
   },
+  emits: ['del-item'],
   mounted () {
     delProductModal = new Modal(this.$refs.delModal, {
       keyboard: false,
@@ -45,15 +51,6 @@ export default {
     })
   },
   methods: {
-    delProduct () {
-      this.$http.delete(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/product/${this.item.id}`)
-        .then((response) => {
-          this.hideModal()
-          this.$emit('update', this.currentPage)
-        }).catch((error) => {
-          alert(error.data.message)
-        })
-    },
     openModal () {
       delProductModal.show()
     },

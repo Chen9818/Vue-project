@@ -10,7 +10,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-              <router-link class="nav-link" to="/admin/products">後台產品列</router-link>
+              <router-link class="nav-link" to="/admin/products">後台產品列表</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/admin/coupon">優惠券列表</router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link" to="/admin/orders">後台訂單</router-link>
@@ -19,7 +22,7 @@
               <router-link class="nav-link" to="/">回前台首頁</router-link>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link" @click.prevent="signout">登出</a>
+              <a href="#" class="nav-link" @click="$emit('signOut')">登出</a>
             </li>
         </ul>
       </div>
@@ -29,11 +32,7 @@
 
 <script>
 export default {
-  methods: {
-    signout () {
-      this.$emit('signout')
-    }
-  }
+  emits: ['signOut']
 }
 </script>
 

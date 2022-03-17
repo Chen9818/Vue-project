@@ -22,9 +22,24 @@ const routes = [
         component: () => import('../views/Product.vue')
       },
       {
+        path: '/about',
+        name: 'About',
+        component: () => import('../views/About.vue')
+      },
+      {
+        path: '/question',
+        name: 'Question',
+        component: () => import('../views/Question.vue')
+      },
+      {
         path: '/carts',
         name: 'Carts',
         component: () => import('../views/Carts.vue')
+      },
+      {
+        path: '/payment',
+        name: 'Payment',
+        component: () => import('../views/Payment.vue')
       }
     ]
   },
@@ -45,6 +60,10 @@ const routes = [
       {
         path: 'orders',
         component: () => import('../views/Dashboard/Orders.vue')
+      },
+      {
+        path: 'coupon',
+        component: () => import('../views/Dashboard/Coupon.vue')
       }
     ]
   }

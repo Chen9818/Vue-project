@@ -15,7 +15,32 @@
             <div class="col-sm-4">
               <div class="form-group mb-3">
                 <label for="imageUrl" class="form-label">主要圖片</label>
-                <input v-model="editProduct.imageUrl" type="text" class="form-control" placeholder="請輸入圖片連結">
+                    <div class="mb-3">
+                      <label for="image" class="form-label">輸入圖片網址</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="image"
+                        v-model="editProduct.imageUrl"
+                        placeholder="請輸入圖片連結"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="customFile" class="form-label"
+                        >或 上傳圖片
+                        <i
+                          class="fas fa-spinner fa-spin"
+                          v-if="status.fileUploading"
+                        ></i>
+                      </label>
+                      <input
+                        type="file"
+                        id="customFile"
+                        class="form-control"
+                        ref="fileInput"
+                        @change="uploadFile"
+                      />
+                    </div>
                 <img class="img-fluid" :src="editProduct.imageUrl">
               </div>
               <div v-if="Array.isArray(editProduct.imagesUrl)">
@@ -121,8 +146,14 @@ export default {
   props: ['product', 'isNew'],
   data () {
     return {
+<<<<<<< HEAD
       editProduct: {},
       modal: null
+=======
+      modal: null,
+      editProduct: {},
+      status: {}
+>>>>>>> d1
     }
   },
   mounted () {
@@ -158,6 +189,43 @@ export default {
     createImages () {
       this.editProduct.imagesUrl = []
       this.editProduct.imagesUrl.push('')
+    },
+    uploadFile () {
+      const uploadedFile = this.$refs.fileInput.files[0]
+      // console.log(this.$refs.fileInput)
+      console.log(this.$refs.fileInput.files[0]) // 選取第一個已選取資料
+      const formData = new FormData()
+      formData.append('file-to-upload', uploadedFile)
+      // console.log(formData)
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/upload`
+      this.status.fileUploading = true
+      this.$http.post(url, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then((response) => {
+        this.status.fileUploading = false
+        if (response.data.success) {
+          this.editProduct.imageUrl = response.data.imageUrl
+          this.$refs.fileInput.value = ''
+          // this.emitter.emit('push-message', {
+          //   style: 'success',
+          //   title: '圖片上傳結果',
+          //   content: response.data.message
+          // })
+        } else {
+          this.$refs.fileInput.value = ''
+          // this.emitter.emit('push-message', {
+          //   style: 'danger',
+          //   title: '圖片上傳結果',
+          //   content: response.data.message
+          // })
+        }
+      }).catch((error) => {
+        this.status.fileUploading = false
+        alert(error)
+        // this.$httpMessageState(error.response, '圖片失敗')
+      })
     },
     openModal () {
       productModal.show()
