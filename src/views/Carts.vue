@@ -1,5 +1,5 @@
 <template>
-    <div class="products w-100" style="background:#ccc">
+  <div class="products w-100" style="background:#ccc;height:95vh">
     <Loading :active="isLoading"></Loading>
     <NavbarView></NavbarView>
     <div class="d-md-block d-none w-100" style="margin-bottom:100px;padding-top:150px">
@@ -81,11 +81,16 @@
       <div class="noneCart mx-auto text-center border-top border-dark " style="width: 80%" v-else>
         <h1 class="my-3">購物車無商品，立刻逛逛!</h1>
         <img src="@/assets/pic/乳膠枕/好眠乳膠枕.png" alt="好眠乳膠枕">
-        <button type="button" class="btn btn-base d-block mx-auto mt-2 fs-3 mt-5" style="color:#fff" @click="redirect()">前往商品列表</button>
+        <button type="button" class="btn btn-base d-block mx-auto fs-3 m-5" style="color:#fff" @click="redirect">前往商品列表</button>
       </div>
       <div class="w-100">
         <div style="width: 80%" class="mx-auto d-flex justify-content-end">
           <h2 v-if="cart.total > 0">總金額:{{ cart.total }}</h2>
+        </div>
+      </div>
+      <div class="w-100">
+        <div style="width: 80%" class="mx-auto d-flex justify-content-end">
+          <button v-if="cart.total > 0" type="button" class="btn btn-base" style="color:#fff" @click="nextPage">下一步</button>
         </div>
       </div>
     </div>
@@ -161,16 +166,21 @@
       <div class="noneCart mx-auto text-center" style="width: 80%" v-else>
         <h1>購物車無商品，立刻逛逛!</h1>
         <img src="@/assets/pic/乳膠枕/好眠乳膠枕.png" alt="好眠乳膠枕">
-        <button type="button" class="btn btn-secondary d-block mx-auto mt-2" @click="redirect()">前往商品列表</button>
+        <button type="button" class="btn btn-base d-block mx-auto mt-2" style="color:#fff" @click="redirect">前往商品列表</button>
       </div>
       <div class="w-100">
         <div style="width: 80%" class="mx-auto d-flex justify-content-end">
           <h2 v-if="cart.total > 0">總金額:{{ cart.total }}</h2>
         </div>
       </div>
+      <div class="w-100">
+        <div style="width: 80%" class="mx-auto d-flex justify-content-end">
+          <button v-if="cart.total > 0" type="button" class="btn btn-base" style="color:#fff" @click="nextPage">下一步</button>
+        </div>
+      </div>
     </ul>
     <!--訂購人資訊-->
-    <div class="w-50 mx-auto mt-5 mb-3" style="border-bottom: 1px solid #000;">
+    <!-- <div class="w-50 mx-auto mt-5 mb-3" style="border-bottom: 1px solid #000;">
         <h1>訂購人資訊</h1>
     </div>
     <div class="mb-5 row justify-content-center w-100 mx-auto">
@@ -269,9 +279,9 @@
           >送出訂單</button>
         </div>
       </Form>
-    </div>
-    <FooterView></FooterView>
+    </div> -->
   </div>
+  <FooterView></FooterView>
 </template>
 
 <script>
@@ -288,15 +298,6 @@ export default {
       isLoading: false,
       cart: {
         carts: []
-      },
-      form: {
-        user: {
-          name: '',
-          email: '',
-          tel: '',
-          address: ''
-        },
-        message: ''
       }
     }
   },
@@ -371,17 +372,21 @@ export default {
     redirect () {
       this.$router.push('/products')
     },
-    createOrder () {
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`
-      const order = this.form
-      this.$http.post(url, { data: order }).then((response) => {
-        this.$refs.form.resetForm() // vee validate 的方法 form reset
-        this.getCart()
-        this.$router.push('/payment')
-      }).catch((err) => {
-        this.$httpMessageState(err.response, '送出訂單')
-      })
+    nextPage () {
+      this.$router.push('/payment')
     }
+    // createOrder () {
+    //   const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`
+    //   const order = this.form
+    //   this.$http.post(url, { data: order }).then((response) => {
+    //     this.$refs.form.resetForm() // vee validate 的方法 form reset
+    //     console.log(response.data.orderId)
+    //     this.getCart()
+    //     // this.$router.push('/payment')
+    //   }).catch((err) => {
+    //     this.$httpMessageState(err.response, '送出訂單')
+    //   })
+    // }
   }
 }
 </script>
