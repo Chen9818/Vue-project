@@ -2,9 +2,12 @@
 <div class="payment" style="background:#ccc;">
 <NavbarView></NavbarView>
 <MainImage :title='title'></MainImage>
-<div class="mt-5 w-100 p-3 d-flex">
-  <div class="w-50">
-        <div class="mb-5 row justify-content-center w-100 mx-auto">
+<div class="aa mt-5 p-3 d-block d-lg-flex">
+  <div class="ss d-w-100 d-lg-w-50">
+    <h2 class="w-50 mx-auto p-2" style="border-bottom:1px solid #000">
+      訂購人資訊
+    </h2>
+    <div class="my-5 row justify-content-center w-100 mx-auto">
       <Form
         ref="form"
         class="col-md-6"
@@ -85,7 +88,7 @@
 
         <div class="mb-3">
           <label for="payment" class="form-label">付款方式<span class="px-1" style="color: #f00;">*</span></label>
-          <select id="payment" class="w-100">
+          <select id="payment" class="form-select w-100">
             <option value="">信用卡</option>
             <option value="">ATM</option>
             <option value="">超商繳費</option>
@@ -113,9 +116,9 @@
       </Form>
     </div>
   </div>
-  <div class="w-50">
+  <div class="" style="width:50%">
     <div class="couponPart text-center">
-      {{carts}}
+      <!-- {{carts}} -->
       <div class="coupon">
         <div class="couponImage fs-3">
           <div class="couponTxt">
@@ -123,25 +126,58 @@
             <br>折扣碼:777
           </div>
         </div>
-        <div class="couponNum w-50 d-flex justify-content-center">
-          <input class="d-flex" type="text" placeholder="輸入折扣碼:777">
-          <button class="d-flex">套用</button>
+        <div class="couponNum m-auto w-50 d-flex">
+          <input class="form-control" style="border-radius:0px" type="text" placeholder="輸入折扣碼:777" v-model="coupon">
+          <button class="btn btn-base" type="button" style="color:#fff;border-radius:0px" @click="getCoupon">套用</button>
         </div>
       </div>
     </div>
-    <table class="table">
-      <tbody v-for="(item,id) in carts.carts" :key="id">
-        <tr>
-          <td>
-            <img :src="item.product.imageUrl" :alt="item.product.title">
-          </td>
-          <td>{{item.product.title}}
-            <br>NT ${{item.product.price}}/份
-          </td>
-          <td>X{{item.qty}}</td>
+    <div class="w-50 mx-auto mt-5">
+      <h2>
+        購物清單
+      </h2>
+      <div v-for="(item,id) in cart.carts" :key="id" class="p-2 d-flex justify-content-between" style="border-bottom:1px solid #fff">
+        <!-- <tr> -->
+          <div class="d-flex">
+            <div>
+              <img :src="item.product.imageUrl" :alt="item.product.title" style="height:100px;width:100px">
+            </div>
+            <div class="mx-3">{{item.product.title}}
+              <br>NT ${{item.product.price}}/顆
+            </div>
+          </div>
+
+          <div>X{{item.qty}}</div>
+        <!-- </tr> -->
+      </div>
+      <h3 class="mt-5">
+        <!-- <tr class="">
+          <td class="">222</td>
+          <td class=""></td>
+          <td class=""></td>
+          <td class="text-end">111</td>
         </tr>
-      </tbody>
-    </table>
+        <tr class="">
+          <td>111</td>
+          <td>222</td>
+        </tr>
+        <tr class="">
+          <td>222</td>
+          <td>333</td>
+        </tr> -->
+        <span v-if="couponNT>0" class="d-flex justify-content-between">
+          <span>總計</span>NT ${{cart.total}}元
+        </span>
+        <!-- <br> -->
+        <span style="color:#ff0000" v-if="couponNT>0" class="d-flex justify-content-between">
+          <span>夏日特賣</span>-NT ${{cart.total-couponNT}}元
+        </span>
+        <!-- <br> -->
+        <span v-if="couponNT>0" class="d-flex justify-content-between">
+          <span>總計</span>NT ${{couponNT}}元
+        </span>
+      </h3>
+    </div>
     <!-- <div class="payment text-center mb-5 fs-5 d-flex align-items-center justify-content-center">
       <div class="">
         <label for="pay">付款方式:</label>
@@ -168,7 +204,7 @@ export default {
   data () {
     return {
       title: '付款方式',
-      carts: [],
+      // carts: [],
       loadingStatus: {
         loadingItem: ''
       },
@@ -184,7 +220,9 @@ export default {
           address: ''
         },
         message: ''
-      }
+      },
+      coupon: '',
+      couponNT: ''
     }
   },
   components: {
@@ -201,7 +239,7 @@ export default {
       this.$http
         .get(url)
         .then((response) => {
-          this.carts = response.data.data
+          this.cart = response.data.data
         })
         .catch((err) => {
           alert(err.response.data.message)
@@ -213,11 +251,26 @@ export default {
       this.$http.post(url, { data: order }).then((response) => {
         this.$refs.form.resetForm() // vee validate 的方法 form reset
         console.log(response.data.orderId)
+        this.$httpMessageState(response, '送出訂單')
         this.getCart()
         // this.$router.push('/payment')
       }).catch((err) => {
         this.$httpMessageState(err.response, '送出訂單')
       })
+    },
+    getCoupon () {
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`
+      const coupon = {
+        code: this.coupon
+      }
+      this.$http.post(url, { data: coupon })
+        .then((response) => {
+          // console.log(response.data.data.final_total)
+          this.couponNT = parseInt(response.data.data.final_total)
+          // console.log(this.couponNT)
+          this.coupon = ''
+        })
+        .catch()
     }
     // getOrder (id) {
     //   const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${id}`
@@ -258,4 +311,17 @@ export default {
   }
 }
 
+// @media (max-width:780px){
+//   .payment .aa{
+//     display: block;
+    // .ss {
+      // width:100%;
+    // }
+//   }
+// }
+@include media-breakpoint-up(lg) {
+  .ss{
+    width:50%
+  }
+}
 </style>
