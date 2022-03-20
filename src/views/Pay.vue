@@ -7,7 +7,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">{{payMethod}}</th>
             <th scope="col">First</th>
             <th scope="col">Last</th>
             <th scope="col">Handle</th>
@@ -42,19 +42,28 @@
 import NavbarView from '@/components/NavbarView.vue'
 import FooterView from '@/components/FooterView.vue'
 import MainImage from '@/components/MainImage.vue'
-// import emitter from '../utility/emitter'
+import emitter from '../utility/emitter'
 
 export default {
   data () {
     return {
       title: '確認付款',
-      isLoading: false
+      isLoading: false,
+      payMethod: ''
     }
   },
   components: {
     NavbarView,
     FooterView,
     MainImage
+  },
+  methods: {
+  },
+  mounted () {
+    emitter.on('change', (e) => {
+      console.log(e)
+      this.payMethod = e
+    })
   }
 }
 </script>

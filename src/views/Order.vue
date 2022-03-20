@@ -136,12 +136,12 @@
 
         <div class="mb-3">
           <label for="payment" class="form-label">付款方式<span class="px-1" style="color: #f00;">*</span></label>
-          <select id="payment" class="form-select w-100">
-            <option value="">信用卡</option>
-            <option value="">ATM</option>
-            <option value="">超商繳費</option>
-            <option value="">ApplePay</option>
-            <option value="">LinePay</option>
+          <select id="payment" class="form-select w-100" v-model="payMethod">
+            <option value="信用卡">信用卡</option>
+            <option value="ATM">ATM</option>
+            <option value="超商繳費">超商繳費</option>
+            <option value="ApplePay">ApplePay</option>
+            <option value="LinePay">LinePay</option>
           </select>
         </div>
 
@@ -173,6 +173,7 @@
 import NavbarView from '@/components/NavbarView.vue'
 import FooterView from '@/components/FooterView.vue'
 import MainImage from '@/components/MainImage.vue'
+import emitter from '../utility/emitter'
 
 export default {
   data () {
@@ -196,7 +197,8 @@ export default {
         message: ''
       },
       coupon: '',
-      couponNT: ''
+      couponNT: '',
+      payMethod: '信用卡'
     }
   },
   components: {
@@ -224,7 +226,8 @@ export default {
       const order = this.form
       this.$http.post(url, { data: order }).then((response) => {
         this.$refs.form.resetForm() // vee validate 的方法 form reset
-        console.log(response.data.orderId)
+        // console.log(response.data.orderId)
+        emitter.emit('change', this.payMethod)
         this.$httpMessageState(response, '送出訂單')
         this.getCart()
         this.$router.push('/pay')
