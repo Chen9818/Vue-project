@@ -1,9 +1,57 @@
 <template>
-<div class="payment" style="background:#ccc;">
+<div class="order" style="background:#ccc;">
+<Loading :active="isLoading"></Loading>
 <NavbarView></NavbarView>
 <MainImage :title='title'></MainImage>
-<div class="aa mt-5 p-3 d-block d-lg-flex">
-  <div class="ss d-w-100 d-lg-w-50">
+<div class="mt-5 p-3 d-block d-lg-flex">
+  <div class="order-1" style="width:100%">
+    <div class="couponPart text-center">
+      <div class="coupon">
+        <div class="couponImage fs-3">
+          <div class="couponTxt">
+            夏日特賣
+            <br>折扣碼:777
+          </div>
+        </div>
+        <div class="couponNum m-auto d-flex">
+          <input class="form-control" style="border-radius:0px" type="text" placeholder="輸入折扣碼:777" v-model="coupon">
+          <button class="btn btn-base" type="button" style="color:#fff;border-radius:0px" @click="getCoupon">套用</button>
+        </div>
+      </div>
+    </div>
+    <div class="w-50 mt-5 mx-auto" v-if="cart.carts.length>0">
+      <h2>
+        購物清單
+      </h2>
+      <div v-for="(item,id) in cart.carts" :key="id" class="p-2 d-flex justify-content-between" style="border-bottom:1px solid #fff">
+          <div class="d-flex">
+            <div>
+              <img :src="item.product.imageUrl" :alt="item.product.title" style="height:100px;width:100px">
+            </div>
+            <div class="mx-3">{{item.product.title}}
+              <br>NT ${{item.product.price}}/顆
+            </div>
+          </div>
+          <div>X{{item.qty}}</div>
+      </div>
+      <h3 class="mt-5">
+        <span class="d-flex justify-content-between">
+          <span>總計</span>NT ${{cart.total}}元
+        </span>
+        <span style="color:#ff0000" v-if="couponNT>0" class="d-flex justify-content-between">
+          <span>夏日特賣</span>-NT ${{cart.total-couponNT}}元
+        </span>
+        <span v-if="couponNT>0" class="d-flex justify-content-between">
+          <span>總計</span>NT ${{couponNT}}元
+        </span>
+      </h3>
+    </div>
+    <div class="w-50 mt-5 mx-auto" v-else>
+      <!-- <button type="button" class="btn btn-base" style="color:#fff">回首頁</button> -->
+    </div>
+  </div>
+
+  <div class="order-0" style="width:100%">
     <h2 class="w-50 mx-auto p-2" style="border-bottom:1px solid #000">
       訂購人資訊
     </h2>
@@ -116,80 +164,6 @@
       </Form>
     </div>
   </div>
-  <div class="" style="width:50%">
-    <div class="couponPart text-center">
-      <!-- {{carts}} -->
-      <div class="coupon">
-        <div class="couponImage fs-3">
-          <div class="couponTxt">
-            夏日特賣
-            <br>折扣碼:777
-          </div>
-        </div>
-        <div class="couponNum m-auto w-50 d-flex">
-          <input class="form-control" style="border-radius:0px" type="text" placeholder="輸入折扣碼:777" v-model="coupon">
-          <button class="btn btn-base" type="button" style="color:#fff;border-radius:0px" @click="getCoupon">套用</button>
-        </div>
-      </div>
-    </div>
-    <div class="w-50 mx-auto mt-5">
-      <h2>
-        購物清單
-      </h2>
-      <div v-for="(item,id) in cart.carts" :key="id" class="p-2 d-flex justify-content-between" style="border-bottom:1px solid #fff">
-        <!-- <tr> -->
-          <div class="d-flex">
-            <div>
-              <img :src="item.product.imageUrl" :alt="item.product.title" style="height:100px;width:100px">
-            </div>
-            <div class="mx-3">{{item.product.title}}
-              <br>NT ${{item.product.price}}/顆
-            </div>
-          </div>
-
-          <div>X{{item.qty}}</div>
-        <!-- </tr> -->
-      </div>
-      <h3 class="mt-5">
-        <!-- <tr class="">
-          <td class="">222</td>
-          <td class=""></td>
-          <td class=""></td>
-          <td class="text-end">111</td>
-        </tr>
-        <tr class="">
-          <td>111</td>
-          <td>222</td>
-        </tr>
-        <tr class="">
-          <td>222</td>
-          <td>333</td>
-        </tr> -->
-        <span v-if="couponNT>0" class="d-flex justify-content-between">
-          <span>總計</span>NT ${{cart.total}}元
-        </span>
-        <!-- <br> -->
-        <span style="color:#ff0000" v-if="couponNT>0" class="d-flex justify-content-between">
-          <span>夏日特賣</span>-NT ${{cart.total-couponNT}}元
-        </span>
-        <!-- <br> -->
-        <span v-if="couponNT>0" class="d-flex justify-content-between">
-          <span>總計</span>NT ${{couponNT}}元
-        </span>
-      </h3>
-    </div>
-    <!-- <div class="payment text-center mb-5 fs-5 d-flex align-items-center justify-content-center">
-      <div class="">
-        <label for="pay">付款方式:</label>
-
-      </div>
-      <div class="pay text-center my-3 fs-5 ml-3">
-        <button type="button" class="btn btn-danger" style="color:#fff">
-          完成結帳
-        </button>
-      </div>
-    </div> -->
-  </div>
 </div>
 <FooterView></FooterView>
 </div>
@@ -253,7 +227,7 @@ export default {
         console.log(response.data.orderId)
         this.$httpMessageState(response, '送出訂單')
         this.getCart()
-        // this.$router.push('/payment')
+        this.$router.push('/pay')
       }).catch((err) => {
         this.$httpMessageState(err.response, '送出訂單')
       })
@@ -310,18 +284,16 @@ export default {
     border-radius: 1rem;
   }
 }
+.couponNum{
+  width: 50%;
+}
 
-// @media (max-width:780px){
-//   .payment .aa{
-//     display: block;
-    // .ss {
-      // width:100%;
-    // }
-//   }
-// }
-@include media-breakpoint-up(lg) {
-  .ss{
-    width:50%
+@include media-breakpoint-down(lg) {
+  .couponImage{
+    background-size:80% 100%;
+  }
+  .couponNum{
+    width: 80%;
   }
 }
 </style>

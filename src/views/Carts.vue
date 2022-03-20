@@ -373,7 +373,7 @@ export default {
       this.$router.push('/products')
     },
     nextPage () {
-      this.$router.push('/payment')
+      this.$router.push('/order')
     }
     // createOrder () {
     //   const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`
