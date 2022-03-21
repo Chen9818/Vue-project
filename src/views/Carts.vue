@@ -2,7 +2,7 @@
   <div class="products w-100" style="background:#ccc;height:95vh">
     <Loading :active="isLoading"></Loading>
     <NavbarView></NavbarView>
-    <div class="d-md-block d-none w-100" style="margin-bottom:100px;padding-top:150px">
+    <div class="d-md-block d-none w-100" style="margin-bottom:0px;padding-top:150px">
         <div
           style="width: 80%"
           class="mx-auto mb-3 d-flex justify-content-between"
@@ -90,13 +90,13 @@
       </div>
       <div class="w-100">
         <div style="width: 80%" class="mx-auto d-flex justify-content-end">
-          <button v-if="cart.total > 0" type="button" class="btn btn-base" style="color:#fff" @click="nextPage">下一步</button>
+          <button v-if="cart.total > 0" type="button" class="btn btn-base my-5 fs-4" style="color:#fff" @click="nextPage">下一步</button>
         </div>
       </div>
     </div>
 
     <!--RWD-->
-    <ul class="d-md-none w-100" style="padding:130px 0 0 0">
+    <ul class="d-md-none w-100 m-0" style="padding:130px 0 0 0">
       <div
         style="width: 80%; border-bottom: 1px solid #000"
         class="mx-auto d-flex justify-content-between"
@@ -166,7 +166,7 @@
       <div class="noneCart mx-auto text-center" style="width: 80%" v-else>
         <h1>購物車無商品，立刻逛逛!</h1>
         <img src="@/assets/pic/乳膠枕/好眠乳膠枕.png" alt="好眠乳膠枕">
-        <button type="button" class="btn btn-base d-block mx-auto mt-2" style="color:#fff" @click="redirect">前往商品列表</button>
+        <button type="button" class="btn btn-base d-block mx-auto my-2" style="color:#fff" @click="redirect">前往商品列表</button>
       </div>
       <div class="w-100">
         <div style="width: 80%" class="mx-auto d-flex justify-content-end">
@@ -175,7 +175,7 @@
       </div>
       <div class="w-100">
         <div style="width: 80%" class="mx-auto d-flex justify-content-end">
-          <button v-if="cart.total > 0" type="button" class="btn btn-base" style="color:#fff" @click="nextPage">下一步</button>
+          <button v-if="cart.total > 0" type="button" class="btn btn-base  my-3 fs-5" style="color:#fff" @click="nextPage">下一步</button>
         </div>
       </div>
     </ul>

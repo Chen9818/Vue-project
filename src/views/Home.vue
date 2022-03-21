@@ -6,7 +6,7 @@
         class="main-txt d-flex align-items-center"
         data-aos="fade-zoom-in"
         data-aos-easing="ease-in-back"
-        data-aos-delay="1000"
+        data-aos-delay="500"
         data-aos-duration="1000"
       >
         ~好眠~<br />讓您一夜好眠

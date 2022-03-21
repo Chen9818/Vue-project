@@ -42,7 +42,7 @@ const routes = [
         component: () => import('../views/Order.vue')
       },
       {
-        path: '/pay',
+        path: '/pay/:id',
         name: 'Pay',
         component: () => import('../views/Pay.vue')
       },

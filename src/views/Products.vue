@@ -41,10 +41,10 @@
                 </div>
                   <div class="card-text d-flex justify-content-between" style="font-size:1.2rem">
                   <p class="text-decoration-line-through">
-                    原:NT{{ item.origin_price }}
+                    原價:NT{{ item.origin_price }}
                   </p>
                   <p style="color:#ff0000">
-                    特:NT{{ item.price }}
+                    特價:NT{{ item.price }}
                   </p>
                   </div>
                 <div class="d-flex justify-content-between">
