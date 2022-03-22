@@ -106,7 +106,7 @@ export default {
       isLoading: false,
       product: {},
       pagination: {},
-      MainTitle: '產品列表'
+      MainTitle: '商品列表'
     }
   },
   components: {

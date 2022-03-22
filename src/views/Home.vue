@@ -95,7 +95,6 @@
 <script>
 import FooterView from '@/components/FooterView.vue'
 import NavbarView from '@/components/NavbarView.vue'
-// import emitter from '../utility/emitter'
 
 export default {
   name: 'Home',
@@ -281,6 +280,12 @@ export default {
         width: 100%;
         img {
           vertical-align: middle;
+        }
+        .img-1{
+          border-radius: 10px 10px 0 0;
+        }
+        .img-2{
+          border-radius: 0 0 10px 10px;
         }
       }
       .info-txt {

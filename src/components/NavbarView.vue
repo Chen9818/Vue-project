@@ -1,7 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg position-fixed w-100">
     <div class="container-fluid">
-      <!-- {{ass}} -->
       <a class="navbar-brand" href="#">
         <img src="@/assets/logo.png" alt="logo" />
       </a>
@@ -66,7 +65,6 @@ export default {
   data () {
     return {
       cart: {}
-      // ass: ''
     }
   },
   methods: {
@@ -86,8 +84,6 @@ export default {
     this.getCart()
     emitter.on('cart', () => {
       this.getCart()
-      // console.log(e, 'aaaa')
-      // this.ass = e
     })
   }
 }

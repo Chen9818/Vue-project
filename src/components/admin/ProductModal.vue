@@ -178,7 +178,7 @@ export default {
           this.hideModal()
           this.$emit('update')
         }).catch((error) => {
-          alert(error.data.message)
+          alert(error.response.data.message)
         })
     },
     createImages () {
@@ -187,11 +187,9 @@ export default {
     },
     uploadFile () {
       const uploadedFile = this.$refs.fileInput.files[0]
-      // console.log(this.$refs.fileInput)
       console.log(this.$refs.fileInput.files[0]) // 選取第一個已選取資料
       const formData = new FormData()
       formData.append('file-to-upload', uploadedFile)
-      // console.log(formData)
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/upload`
       this.status.fileUploading = true
       this.$http.post(url, formData, {
@@ -203,23 +201,12 @@ export default {
         if (response.data.success) {
           this.editProduct.imageUrl = response.data.imageUrl
           this.$refs.fileInput.value = ''
-          // this.emitter.emit('push-message', {
-          //   style: 'success',
-          //   title: '圖片上傳結果',
-          //   content: response.data.message
-          // })
         } else {
           this.$refs.fileInput.value = ''
-          // this.emitter.emit('push-message', {
-          //   style: 'danger',
-          //   title: '圖片上傳結果',
-          //   content: response.data.message
-          // })
         }
       }).catch((error) => {
         this.status.fileUploading = false
-        alert(error)
-        // this.$httpMessageState(error.response, '圖片失敗')
+        alert(error.response.data.message)
       })
     },
     openModal () {

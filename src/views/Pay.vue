@@ -10,15 +10,13 @@
             <h2>最後一步，完成訂單</h2>
           </div>
           <div class="img w-100">
-            <img src="@/assets/pic/main-page/info-img.png" class="w-100" alt="">
+            <img src="@/assets/pic/main-page/payDone.png" class="w-100" alt="">
           </div>
         </div>
       </div>
       <div class="px-4 fs-4" style="width:40%">
         <div class="" style="width:80%">
-          <!-- {{order}} -->
           <h2>訂單明細</h2>
-          <!-- {{order.total}} -->
           <div class="p-2 d-flex justify-content-between" style="border-bottom:1px solid #fff">
               <div class="">姓名</div>
               <div>{{order.name}}</div>
@@ -48,35 +46,6 @@
           </div>
         </div>
       </div>
-      <!-- <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">{{payMethod}}</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table> -->
     </div>
     <FooterView></FooterView>
   </div>
@@ -92,9 +61,6 @@ export default {
     return {
       title: '確認付款',
       isLoading: false,
-      // cart: {
-      //   carts: []
-      // },
       order: {
         name: '',
         address: '',
@@ -123,7 +89,6 @@ export default {
         .get(url)
         .then((response) => {
           const { user, total, id } = response.data.orders[0]
-          // this.total = response.data.orders[0]
           this.order = user
           this.total = total
           this.id = id

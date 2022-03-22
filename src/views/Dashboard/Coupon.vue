@@ -81,14 +81,12 @@ export default {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupons?page=${page}`
       this.$http.get(url)
         .then((response) => {
-          // console.log(response)
           const { coupons, pagination } = response.data
           this.coupon = coupons
           this.pagination = pagination
           console.log(this.coupon, this.pagination)
         }).catch((err) => {
-          // console.log(err)
-          alert(err)
+          alert(err.response.data.message)
         })
     },
     openCouponModal (isNew, item) {
@@ -121,13 +119,12 @@ export default {
 
       this.$http[httpMethods](url, { data }).then((response) => {
         this.isLoading = false
-        // this.$httpMessageState(response, '新增優惠券');
+        this.$httpMessageState(response, '新增優惠券')
         this.getCoupon()
         this.$refs.couponModal.hideModal()
       }).catch((error) => {
         this.isLoading = false
-        alert(error)
-        // this.$httpMessageState(error.response, '錯誤訊息');
+        this.$httpMessageState(error.response, '錯誤訊息')
       })
     },
     delCoupon () {
@@ -135,14 +132,13 @@ export default {
       this.isLoading = true
       this.$http.delete(url).then((response) => {
         this.isLoading = false
-        // this.$httpMessageState(response, '刪除優惠券');
+        this.$httpMessageState(response, '刪除優惠券')
         const delComponent = this.$refs.delModal
         delComponent.hideModal()
         this.getCoupon()
       }).catch((error) => {
         this.isLoading = false
-        alert(error)
-        // this.$httpMessageState(error.response, '刪除優惠券');
+        this.$httpMessageState(error.response, '刪除優惠券')
       })
     }
   }

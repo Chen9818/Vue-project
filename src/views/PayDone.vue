@@ -6,8 +6,8 @@
       <div class="payImage">
         <div class="payText">完成付款</div>
       </div>
-      <div class="d  d-flex justify-content-center">
-      <button type="button" class="btn btn-base" style="color:#fff">回首頁</button>
+      <div class="d-flex justify-content-center">
+        <button type="button" class="btn btn-base" style="color:#fff">回首頁</button>
       </div>
     </div>
     <FooterView></FooterView>
@@ -17,8 +17,6 @@
 <script>
 import NavbarView from '@/components/NavbarView.vue'
 import FooterView from '@/components/FooterView.vue'
-// import MainImage from '@/components/MainImage.vue'
-// import emitter from '../utility/emitter'
 
 export default {
   data () {
@@ -38,7 +36,7 @@ export default {
 @import '@/assets/base/all.scss';
 .payDone{
   width: 100%;
-  height: 200vh;
+  height: 100vh;
   padding: 10rem 0 10rem 0;
   .payImage{
     background: url('../assets/pic/main-page/summer.png');
@@ -58,7 +56,6 @@ export default {
       text-align: center;
       margin: auto;
       width: 30%;
-      // border-radius: 1rem;
     }
   }
 }
