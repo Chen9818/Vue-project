@@ -36,5 +36,8 @@ footer{
   footer h3,.nav-link{
     font-size: .5rem;
   }
+  footer h3{
+    margin-left: 2rem;
+  }
 }
 </style>

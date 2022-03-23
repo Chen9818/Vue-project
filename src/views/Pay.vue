@@ -3,19 +3,19 @@
     <Loading :active="isLoading"></Loading>
     <NavbarView></NavbarView>
     <MainImage :title='title'></MainImage>
-    <div class="pay w-100 py-5" style="display:flex">
-      <div class="d-flex justify-content-center" style="width:60%">
-        <div class="" style="width:80%">
+    <div class="pay w-100 py-5 d-flex">
+      <div class="payInfo payImage d-flex justify-content-center">
+        <div style="width:80%">
           <div class="text">
             <h2>最後一步，完成訂單</h2>
           </div>
           <div class="img w-100">
-            <img src="@/assets/pic/main-page/payDone.png" class="w-100" alt="">
+            <img src="@/assets/pic/main-page/pay.png" class="w-100">
           </div>
         </div>
       </div>
-      <div class="px-4 fs-4" style="width:40%">
-        <div class="" style="width:80%">
+      <div class="payInfo payCheck px-4 fs-4">
+        <div class="payCheckTitle" style="width:80%">
           <h2>訂單明細</h2>
           <div class="p-2 d-flex justify-content-between" style="border-bottom:1px solid #fff">
               <div class="">姓名</div>
@@ -90,7 +90,7 @@ export default {
         .then((response) => {
           const { user, total, id } = response.data.orders[0]
           this.order = user
-          this.total = total
+          this.total = parseInt(total)
           this.id = id
           this.isLoading = false
         })
@@ -122,10 +122,29 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/base/all.scss';
-
+.pay{
+  display:flex;
+  .payImage{
+    width: 60%;
+  }
+  .payCheck{
+    width: 40%;
+  }
+}
 @media (max-width: 750px) {
   .a .pay{
-    display: block;
+    display:block;
+    flex-direction: column;
+    align-items: center;
+    .payInfo{
+      width: 100%;
+      h2{
+        text-align: center;
+      }
+      .payCheckTitle{
+        margin: 2rem auto 0;
+      }
+    }
   }
 }
 </style>

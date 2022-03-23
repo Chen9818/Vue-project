@@ -6,9 +6,6 @@
       <div class="payImage">
         <div class="payText">完成付款</div>
       </div>
-      <div class="d-flex justify-content-center">
-        <button type="button" class="btn btn-base" style="color:#fff">回首頁</button>
-      </div>
     </div>
     <FooterView></FooterView>
   </div>
@@ -36,16 +33,14 @@ export default {
 @import '@/assets/base/all.scss';
 .payDone{
   width: 100%;
-  height: 100vh;
-  padding: 10rem 0 10rem 0;
+  padding: 10rem 0 13rem 0;
   .payImage{
-    background: url('../assets/pic/main-page/summer.png');
+    background: url('../assets/pic/main-page/payDone.png');
     background-position: center center;
     background-repeat: no-repeat;
-    background-size:50% 100%;
-    text-align: center;
-    height: 80vh;
-    text-align: center;
+    background-size:80% 100%;
+    height: 100vh;
+    padding-bottom: 1rem;
     color:#fff;
     display: flex;
     flex-direction: column;
@@ -56,8 +51,19 @@ export default {
       text-align: center;
       margin: auto;
       width: 30%;
+      font-size: 3rem;
     }
   }
 }
 
+@media (max-width: 750px){
+  .payDone .payImage{
+    margin: 1rem;
+    background-size:100% 100%;
+    height: 50vh;
+    .payText{
+      font-size: 2rem;
+    }
+  }
+}
 </style>

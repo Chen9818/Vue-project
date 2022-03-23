@@ -1,11 +1,11 @@
 <template>
-  <div class="products w-100" style="background:#ccc;height:95vh">
+  <div class="products w-100" style="background:#ccc;">
     <Loading :active="isLoading"></Loading>
     <NavbarView></NavbarView>
-    <div class="d-md-block d-none w-100" style="margin-bottom:0px;padding-top:150px">
+    <div class="d-md-block d-none w-100" style="margin-bottom:0px;padding-top:200px">
         <div
           style="width: 80%"
-          class="mx-auto mb-3 d-flex justify-content-between"
+          class="mx-auto mb-5 d-flex justify-content-between"
         >
           <h1>購物車</h1>
           <button
@@ -90,16 +90,16 @@
       </div>
       <div class="w-100">
         <div style="width: 80%" class="mx-auto d-flex justify-content-end">
-          <button v-if="cart.total > 0" type="button" class="btn btn-base my-5 fs-4" style="color:#fff" @click="nextPage">下一步</button>
+          <button v-if="cart.total > 0" type="button" class="btn btn-base fs-4" style="color:#fff;margin-top:3rem;margin-bottom:3rem;" @click="nextPage">下一步</button>
         </div>
       </div>
     </div>
 
     <!--RWD-->
-    <ul class="d-md-none w-100 m-0" style="padding:130px 0 0 0">
+    <ul class="d-md-none w-100 m-0" style="padding:200px 0 0 0;">
       <div
         style="width: 80%; border-bottom: 1px solid #000"
-        class="mx-auto d-flex justify-content-between"
+        class="mx-auto d-flex justify-content-between mb-5"
       >
         <h1>購物車</h1>
         <button
@@ -175,7 +175,7 @@
       </div>
       <div class="w-100">
         <div style="width: 80%" class="mx-auto d-flex justify-content-end">
-          <button v-if="cart.total > 0" type="button" class="btn btn-base  my-3 fs-5" style="color:#fff" @click="nextPage">下一步</button>
+          <button v-if="cart.total > 0" type="button" class="btn btn-base fs-5" style="color:#fff;margin-top:3rem;margin-bottom:10rem;" @click="nextPage">下一步</button>
         </div>
       </div>
     </ul>

@@ -255,7 +255,7 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/base/all.scss';
 .couponImage{
-  background: url('../assets/pic/main-page/summer.png');
+  background: url('../assets/pic/main-page/coupon.png');
   background-position: center center;
   background-repeat: no-repeat;
   background-size:50% 100%;
