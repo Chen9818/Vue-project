@@ -146,14 +146,9 @@ export default {
   props: ['product', 'isNew'],
   data () {
     return {
-<<<<<<< HEAD
-      editProduct: {},
-      modal: null
-=======
       modal: null,
       editProduct: {},
       status: {}
->>>>>>> d1
     }
   },
   mounted () {
