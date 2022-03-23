@@ -51,9 +51,7 @@ export default {
     }
   },
   mounted () {
-    // this.$refs.toast.show()
     emitter.on('push-message', (message) => {
-      // console.log('ass')
       const { style = 'success', title, content } = message
       this.messages.push({ style, title, content })
       this.toastShow()
