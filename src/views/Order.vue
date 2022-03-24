@@ -10,11 +10,11 @@
         <div class="couponImage fs-3">
           <div class="couponTxt">
             夏日特賣
-            <br>折扣碼:777
+            <br>折扣碼:555
           </div>
         </div>
         <div class="couponNum m-auto d-flex">
-          <input class="form-control" style="border-radius:0px" type="text" placeholder="輸入折扣碼:777" v-model="coupon">
+          <input class="form-control" style="border-radius:0px" type="text" placeholder="輸入折扣碼:555" v-model="coupon">
           <button class="btn btn-base" type="button" style="color:#fff;border-radius:0px" @click="getCoupon">套用</button>
         </div>
       </div>

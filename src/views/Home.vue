@@ -320,12 +320,13 @@ export default {
     }
   }
 }
-@media (max-width: 1160px) {
+@media (max-width: 1230px) {
   .product-type {
     .items {
       width: 100%;
       .item {
         width: 50%;
+        height: 20rem;
       }
     }
   }
@@ -336,6 +337,7 @@ export default {
       width: 100%;
       .item {
         width: 100%;
+        height: 10rem;
       }
     }
   }
