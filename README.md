@@ -20,9 +20,9 @@ npm run build
 npm run lint
 ```
 
-### Lints and fixes files
+### Github page
 ```
-npm run lint
+https://chen9818.github.io/vue-project/#/
 ```
 
 ### Customize configuration
