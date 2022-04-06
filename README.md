@@ -21,9 +21,8 @@ npm run lint
 ```
 
 ### Github page
-```
+
 https://chen9818.github.io/vue-project/#/
-```
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
