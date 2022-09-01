@@ -34,7 +34,7 @@
             <router-link class="nav-link fs-3 text-center" to="/">首頁</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link fs-3 text-center" to="/products">商品列表</router-link>
+            <router-link class="nav-link fs-3 text-center" to="/products">商品</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link fs-3 text-center" to="/about">關於我們</router-link>
