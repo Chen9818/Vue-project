@@ -5,7 +5,7 @@
     <MainImage :title="MainTitle"></MainImage>
       <div class="history">
         <div class="title mb-3">
-          <h1>創立宗旨</h1>
+          <h1>会社の宗旨</h1>
         </div>
         <div class="txt fs-4 p-4">
           「好眠」秉持著為您提供最好的睡眠相關諮詢。
@@ -16,7 +16,7 @@
       </div>
       <div class="location pt-3">
         <div class="title">
-          <h1>實體店面</h1>
+          <h1>店の情報</h1>
         </div>
         <div>
           <div class="d-flex locationTitle">台北信義店
