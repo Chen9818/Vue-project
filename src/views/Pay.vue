@@ -7,7 +7,7 @@
       <div class="payInfo payImage d-flex justify-content-center">
         <div style="width:80%">
           <div class="text">
-            <h2>最後一步，完成訂單</h2>
+            <h2>あと一歩，注文を完成します</h2>
           </div>
           <div class="img w-100">
             <img src="@/assets/pic/main-page/pay.png" class="w-100">
@@ -16,33 +16,33 @@
       </div>
       <div class="payInfo payCheck px-4 fs-4">
         <div class="payCheckTitle" style="width:80%">
-          <h2>訂單明細</h2>
+          <h2>注文の詳細</h2>
           <div class="p-2 d-flex justify-content-between" style="border-bottom:1px solid #fff">
-              <div class="">姓名</div>
+              <div class="">名前</div>
               <div>{{order.name}}</div>
           </div>
           <div class="p-2 d-flex justify-content-between" style="border-bottom:1px solid #fff">
-              <div class="">電話</div>
+              <div class="">電話番号</div>
               <div>{{order.tel}}</div>
           </div>
           <div class="p-2 d-flex justify-content-between" style="border-bottom:1px solid #fff">
-              <div class="">地址</div>
+              <div class="">アドレス</div>
               <div>{{order.address}}</div>
           </div>
           <div class="p-2 d-flex justify-content-between" style="border-bottom:1px solid #fff">
-              <div class="">email</div>
+              <div class="">メール</div>
               <div>{{order.email}}</div>
           </div>
           <div class="p-2 d-flex justify-content-between" style="border-bottom:1px solid #fff">
-              <div class="">付款方式</div>
+              <div class="">お支払方法</div>
               <div>{{payMethod}}</div>
           </div>
           <div class="p-2 d-flex justify-content-between" style="border-bottom:1px solid #fff;color:#ff0000">
-              <div class="">總計</div>
+              <div class="">合計</div>
               <div>{{total}}</div>
           </div>
           <div class="text-end mt-5">
-            <button type="button" @click='payDone' class="btn btn-base fs-4" style="color:#fff">完成訂單</button>
+            <button type="button" @click='payDone' class="btn btn-base fs-4" style="color:#fff">完成</button>
           </div>
         </div>
       </div>
