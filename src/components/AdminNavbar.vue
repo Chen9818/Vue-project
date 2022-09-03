@@ -10,19 +10,19 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-              <router-link class="nav-link" to="/admin/products">後台產品列表</router-link>
+              <router-link class="nav-link" to="/admin/products">商品管理</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/admin/coupon">優惠券列表</router-link>
+              <router-link class="nav-link" to="/admin/coupon">クーポン管理</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/admin/orders">後台訂單</router-link>
+              <router-link class="nav-link" to="/admin/orders">注文管理</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/">回前台首頁</router-link>
+              <router-link class="nav-link" to="/">ホームページへ</router-link>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link" @click="$emit('signOut')">登出</a>
+              <a href="#" class="nav-link" @click="$emit('signOut')">ログアウト</a>
             </li>
         </ul>
       </div>

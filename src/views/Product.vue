@@ -20,7 +20,7 @@
               @click="addToCart(product.id)"
               class="btn btn-base" style="color:#fff"
               :disabled="cart[0]?.qty>7"
-              >加入購物車</button>
+              >カート</button>
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@
       <!-- 相關商品部分 -->
       <div class="other mt-5 mb-5">
         <div class="title">
-          <h2>你可能會喜歡:</h2>
+          <h2>関連する商品:</h2>
         </div>
         <div class="container">
           <div class="row">

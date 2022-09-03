@@ -9,13 +9,13 @@
         data-aos-delay="500"
         data-aos-duration="1000"
       >
-        ~好眠~<br />讓您一夜好眠
+        ~好眠~<br />いい睡眠を
       </div>
     </section>
     <section style="height:3vh;width:100%;background:#ccc"></section>
     <section class="main-banner">
       <div class="banner-txt">
-        <h1>滿意您的睡眠品質嗎?</h1>
+        <h1>今の睡眠を満足していますか?</h1>
       </div>
       <div class="banner-img"></div>
     </section>
@@ -30,7 +30,8 @@
           <img class="img-1" src="@/assets/pic/main-page/info-img.png" alt="使用枕頭目的" />
         </div>
         <div class="info-txt">
-          <h3>使用枕頭的目的</h3>
+          <h3>
+まくらの目的</h3>
           <p>
             使用枕頭的目的，就是在睡覺時，能保持身體與脊椎呈現最自然、水平的姿勢。讓頭不會過度前傾和後仰，讓頸椎處於最放鬆舒適的角度，我們也能輕鬆無負擔的入眠。因此枕頭最主要的功用，即是在睡眠中能支撐頸椎與頭部，不論是仰睡或是側睡時，都能讓頭、頸、脊椎維持一條水平的直線最自然的角度。
           </p>
@@ -43,7 +44,7 @@
         data-aos-once="true"
       >
         <div class="info-txt">
-          <h3>該如何挑選適合自己的枕頭？</h3>
+          <h3>まくらの選び方？</h3>
           <p>
             枕頭的高度是影響睡眠舒適度的一大關鍵，過高或是過低的枕頭都會讓頸椎產生龐大的負擔，且由於每個人生理構造不盡相同，每個人適合的枕頭高度與形狀也會不同。
             <br />
@@ -59,7 +60,7 @@
       </div>
     </section>
     <section class="product-view">
-      <h2>產品一覽</h2>
+      <h2>商品一覽</h2>
     </section>
     <section class="product-type">
       <div class="items">

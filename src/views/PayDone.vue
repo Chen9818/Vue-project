@@ -4,7 +4,7 @@
     <NavbarView></NavbarView>
     <div class="payDone">
       <div class="payImage">
-        <div class="payText">完成付款</div>
+        <div class="payText">決済完了</div>
       </div>
     </div>
     <FooterView></FooterView>

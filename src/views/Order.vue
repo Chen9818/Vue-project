@@ -9,19 +9,19 @@
       <div class="coupon">
         <div class="couponImage fs-3">
           <div class="couponTxt">
-            夏日特賣
-            <br>折扣碼:555
+            summer sale
+            <br>セールコード:555
           </div>
         </div>
         <div class="couponNum m-auto d-flex">
           <input class="form-control" style="border-radius:0px" type="text" placeholder="輸入折扣碼:555" v-model="coupon">
-          <button class="btn btn-base" type="button" style="color:#fff;border-radius:0px" @click="getCoupon">套用</button>
+          <button class="btn btn-base" type="button" style="color:#fff;border-radius:0px" @click="getCoupon">使用</button>
         </div>
       </div>
     </div>
     <div class="w-50 mt-5 mx-auto" v-if="cart.carts.length>0">
       <h2>
-        購物清單
+        注文リスト
       </h2>
       <div v-for="(item,id) in cart.carts" :key="id" class="p-2 d-flex justify-content-between" style="border-bottom:1px solid #fff">
           <div class="d-flex">
@@ -29,20 +29,20 @@
               <img :src="item.product.imageUrl" :alt="item.product.title" style="height:100px;width:100px">
             </div>
             <div class="mx-3">{{item.product.title}}
-              <br>NT ${{item.product.price}}/顆
+              <br>NT ${{item.product.price}}/個
             </div>
           </div>
           <div>X{{item.qty}}</div>
       </div>
       <h3 class="mt-5">
         <span class="d-flex justify-content-between">
-          <span>總計</span>NT ${{cart.total}}元
+          <span>合計</span>NT ${{cart.total}}元
         </span>
         <span style="color:#ff0000" v-if="couponNT>0" class="d-flex justify-content-between">
-          <span>夏日特賣</span>-NT ${{cart.total-couponNT}}元
+          <span>summer sale</span>-NT ${{cart.total-couponNT}}元
         </span>
         <span v-if="couponNT>0" class="d-flex justify-content-between mb-5">
-          <span>總計</span>NT ${{couponNT}}元
+          <span>合計</span>NT ${{couponNT}}元
         </span>
       </h3>
     </div>
@@ -52,7 +52,7 @@
 
   <div class="order-0" style="width:100%">
     <h2 class="w-50 mx-auto p-2" style="border-bottom:1px solid #000">
-      訂購人資訊
+      ユーザー情報
     </h2>
     <div class="mb-5 row justify-content-center w-100 mx-auto">
       <Form
@@ -62,14 +62,14 @@
         @submit="createOrder"
       >
         <div class="mb-3">
-          <label for="name" class="form-label">收件人姓名<span class="px-1" style="color: #f00;">*</span></label>
+          <label for="name" class="form-label">名前<span class="px-1" style="color: #f00;">*</span></label>
           <Field
             id="name"
             name="姓名"
             type="text"
             class="form-control"
             :class="{ 'is-invalid': errors['姓名'] }"
-            placeholder="請輸入姓名"
+            placeholder="名前"
             rules="required"
             v-model="form.user.name"
           ></Field>
@@ -80,14 +80,14 @@
         </div>
 
         <div class="mb-3">
-          <label for="email" class="form-label">收件人電子郵件<span class="px-1" style="color: #f00;">*</span></label>
+          <label for="email" class="form-label">メールアドレス<span class="px-1" style="color: #f00;">*</span></label>
           <Field
             id="email"
             name="email"
             type="email"
             class="form-control"
             :class="{ 'is-invalid': errors['email'] }"
-            placeholder="請輸入電子郵件"
+            placeholder="メールアドレス"
             rules="email|required"
             v-model="form.user.email"
           ></Field>
@@ -98,14 +98,14 @@
         </div>
 
         <div class="mb-3">
-          <label for="tel" class="form-label">收件人電話<span class="px-1" style="color: #f00;">*</span></label>
+          <label for="tel" class="form-label"><span class="px-1" style="color: #f00;">電話番号</span></label>
           <Field
             id="tel"
             name="電話"
             type="text"
             class="form-control"
             :class="{ 'is-invalid': errors['電話'] }"
-            placeholder="請輸入電話"
+            placeholder="電話番号"
             rules="required|min:8|max:10"
             v-model="form.user.tel"
           ></Field>
@@ -116,14 +116,14 @@
         </div>
 
         <div class="mb-3">
-          <label for="address" class="form-label">收件人地址<span class="px-1" style="color: #f00;">*</span></label>
+          <label for="address" class="form-label">アドレス<span class="px-1" style="color: #f00;">*</span></label>
           <Field
             id="address"
             name="地址"
             type="text"
             class="form-control"
             :class="{ 'is-invalid': errors['地址'] }"
-            placeholder="請輸入地址"
+            placeholder="アドレス"
             rules="required"
             v-model="form.user.address"
           ></Field>
@@ -134,18 +134,18 @@
         </div>
 
         <div class="mb-3">
-          <label for="payment" class="form-label">付款方式<span class="px-1" style="color: #f00;">*</span></label>
+          <label for="payment" class="form-label">お支払い方法<span class="px-1" style="color: #f00;">*</span></label>
           <select id="payment" class="form-select w-100" v-model="payMethod">
-            <option value="信用卡">信用卡</option>
+            <option value="信用卡">カード</option>
             <option value="ATM">ATM</option>
-            <option value="超商繳費">超商繳費</option>
+            <option value="超商繳費">コンビニ決済</option>
             <option value="ApplePay">ApplePay</option>
             <option value="LinePay">LinePay</option>
           </select>
         </div>
 
         <div class="mb-3">
-          <label for="message" class="form-label">留言</label>
+          <label for="message" class="form-label">コメント</label>
           <textarea
             name=""
             id="message"
@@ -159,7 +159,7 @@
           <button type="submit" class="btn btn-danger"
           :disabled="Object.keys(errors).length > 0 || cart.carts.length === 0"
           >
-          送出訂單
+          注文
         </button>
         </div>
       </Form>
