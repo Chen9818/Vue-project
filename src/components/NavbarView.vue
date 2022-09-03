@@ -31,16 +31,17 @@
       <div class="collapse navbar-collapse " id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link class="nav-link fs-3 text-center" to="/">首頁</router-link>
+            <router-link class="nav-link fs-3 text-center" to="/">ホームページ</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link fs-3 text-center" to="/products">商品</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link fs-3 text-center" to="/about">關於我們</router-link>
+            <router-link class="nav-link fs-3 text-center" to="/about">一般情報</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link fs-3 text-center" to="/question">常見問答</router-link>
+            <router-link class="nav-link fs-3 text-center" to="/question">
+お問い合わせ</router-link>
           </li>
         </ul>
       </div>
