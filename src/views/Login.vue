@@ -2,36 +2,36 @@
   <div class="loginPage">
     <form class="justify-content-center" @submit.prevent="signIn">
       <div class="login">
-        <div class="fs-1 mb-3 font-weight-normal text-center">後台登入</div>
+        <div class="fs-1 mb-3 font-weight-normal text-center">注文管理ログイン</div>
         <div class="mb-2">
-          <label for="inputEmail" class="sr-only fs-4">帳號</label>
+          <label for="inputEmail" class="sr-only fs-4">アカウント</label>
           <input
             type="email"
             id="inputEmail"
             class="form-control"
-            placeholder="輸入帳號"
+            placeholder="アカウント"
             v-model="user.username"
             required
             autofocus
           />
         </div>
         <div class="mb-2">
-          <label for="inputPassword" class="sr-only fs-4">密碼</label>
+          <label for="inputPassword" class="sr-only fs-4">パスワード</label>
           <input
             type="password"
             id="inputPassword"
             class="form-control"
             v-model="user.password"
-            placeholder="輸入密碼"
+            placeholder="パスワード"
             required
           />
         </div>
         <div class="text-end mt-4 d-flex justify-content-around">
           <button class="btn btn-lg btn-base btn-block" style="color:#fff" type="submit">
-            登入
+            ログイン
           </button>
           <button class="btn btn-lg btn-base btn-block" style="color:#fff" type="submit" @click="mainPage()">
-            回前台首頁
+            商品ページへ
           </button>
         </div>
       </div>
