@@ -7,7 +7,7 @@
           style="width: 80%"
           class="mx-auto mb-5 d-flex justify-content-between"
         >
-          <h1>購物車</h1>
+          <h1>カート</h1>
           <button
             type="button"
             class="btn btn-outline-secondary mb-3"
@@ -26,11 +26,11 @@
       <table class="table align-middle mx-auto" style="width: 80%" v-if="cart.carts.length>0">
         <thead>
           <tr>
-            <th>圖片</th>
-            <th>商品名稱</th>
-            <th>數量</th>
-            <th>價格</th>
-            <th>刪除</th>
+            <th>写真</th>
+            <th>商品</th>
+            <th>量</th>
+            <th>税込</th>
+            <th>キャンセル</th>
           </tr>
         </thead>
         <tbody>
@@ -79,18 +79,18 @@
       </table>
       <!-- 購物車無商品 -->
       <div class="noneCart mx-auto text-center border-top border-dark " style="width: 80%" v-else>
-        <h1 class="my-3">購物車無商品，立刻逛逛!</h1>
+        <h1 class="my-3">カートは空です。</h1>
         <img src="@/assets/pic/乳膠枕/好眠乳膠枕.png" alt="好眠乳膠枕">
-        <button type="button" class="btn btn-base d-block mx-auto fs-3 m-5" style="color:#fff" @click="redirect">前往商品列表</button>
+        <button type="button" class="btn btn-base d-block mx-auto fs-3 m-5" style="color:#fff" @click="redirect">商品ページへ</button>
       </div>
       <div class="w-100">
         <div style="width: 80%" class="mx-auto d-flex justify-content-end">
-          <h2 v-if="cart.total > 0">總金額:{{ cart.total }}</h2>
+          <h2 v-if="cart.total > 0">合計金額:{{ cart.total }}</h2>
         </div>
       </div>
       <div class="w-100">
         <div style="width: 80%" class="mx-auto d-flex justify-content-end">
-          <button v-if="cart.total > 0" type="button" class="btn btn-base fs-4" style="color:#fff;margin-top:3rem;margin-bottom:3rem;" @click="nextPage">下一步</button>
+          <button v-if="cart.total > 0" type="button" class="btn btn-base fs-4" style="color:#fff;margin-top:3rem;margin-bottom:3rem;" @click="nextPage">レジに進む</button>
         </div>
       </div>
     </div>
@@ -101,7 +101,7 @@
         style="width: 80%; border-bottom: 1px solid #000"
         class="mx-auto d-flex justify-content-between mb-5"
       >
-        <h1>購物車</h1>
+        <h1>カート</h1>
         <button
           type="button"
           class="btn btn-outline-secondary mb-3"
@@ -114,7 +114,7 @@
             class="fas fa-spinner fa-pulse"
             v-if="loadingStatus.loadingItem === 'open'"
           ></i
-          >清空購物車
+          >全部キャンセル
         </button>
       </div>
       <div v-if="cart.carts.length>0" class="mx-auto">
@@ -164,18 +164,18 @@
         </li>
       </div>
       <div class="noneCart mx-auto text-center" style="width: 80%" v-else>
-        <h1>購物車無商品，立刻逛逛!</h1>
+        <h1>カートは空です。</h1>
         <img src="@/assets/pic/乳膠枕/好眠乳膠枕.png" alt="好眠乳膠枕">
-        <button type="button" class="btn btn-base d-block mx-auto my-2" style="color:#fff" @click="redirect">前往商品列表</button>
+        <button type="button" class="btn btn-base d-block mx-auto my-2" style="color:#fff" @click="redirect">商品ページへ</button>
       </div>
       <div class="w-100">
         <div style="width: 80%" class="mx-auto d-flex justify-content-end">
-          <h2 v-if="cart.total > 0">總金額:{{ cart.total }}</h2>
+          <h2 v-if="cart.total > 0">合計金額:{{ cart.total }}</h2>
         </div>
       </div>
       <div class="w-100">
         <div style="width: 80%" class="mx-auto d-flex justify-content-end">
-          <button v-if="cart.total > 0" type="button" class="btn btn-base fs-5" style="color:#fff;margin-top:3rem;margin-bottom:10rem;" @click="nextPage">下一步</button>
+          <button v-if="cart.total > 0" type="button" class="btn btn-base fs-5" style="color:#fff;margin-top:3rem;margin-bottom:10rem;" @click="nextPage">レジに進む</button>
         </div>
       </div>
     </ul>
