@@ -5,10 +5,10 @@
     <MainImage :title="MainTitle"></MainImage>
     <ul class="filter d-flex justify-content-center pt-5 d-none d-xl-flex">
       <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px" @click="getProducts()">全部</button></li>
-      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px" @click="getFilter('乳膠枕')">乳膠枕</button></li>
-      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px" @click="getFilter('絲絨枕')">絲絨枕</button></li>
+      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px" @click="getFilter('乳膠枕')">パイプ枕</button></li>
+      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px" @click="getFilter('絲絨枕')">わた枕</button></li>
       <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px" @click="getFilter('機能枕')">機能枕</button></li>
-      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px" @click="getFilter('兒童枕')">兒童枕</button></li>
+      <li><button type="button" class="btn btn-base" style="color:#fff;font-size:30px" @click="getFilter('兒童枕')">児童枕</button></li>
     </ul>
     <div class="dropdown d-block d-xl-none d-flex justify-content-center mt-5">
       <button class="btn btn-base dropdown-toggle fs-3" style="color:#fff;width:80%" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -106,7 +106,7 @@ export default {
       isLoading: false,
       product: {},
       pagination: {},
-      MainTitle: '商品列表'
+      MainTitle: '商品一覧'
     }
   },
   components: {
@@ -162,10 +162,10 @@ export default {
       }
       this.$http.post(url, { data: cart }).then((response) => {
         emitter.emit('cart')
-        this.$httpMessageState(response, '加入購物車')
+        this.$httpMessageState(response, 'コートに入れる')
         this.loadingStatus.loadingItem = ''
       }).catch((err) => {
-        this.$httpMessageState(err.response, '加入購物車')
+        this.$httpMessageState(err.response, 'コートに入れる')
       })
     }
   }

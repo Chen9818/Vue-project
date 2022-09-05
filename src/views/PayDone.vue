@@ -18,7 +18,7 @@ import FooterView from '@/components/FooterView.vue'
 export default {
   data () {
     return {
-      title: '確認付款',
+      title: 'お支払い確認',
       isLoading: false
     }
   },

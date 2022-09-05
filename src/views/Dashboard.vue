@@ -42,7 +42,7 @@ export default {
     },
     signOut () {
       document.cookie = 'hexToken=;expires=;'
-      alert('token 已清除')
+      alert('token もう消した')
       this.$router.push('/login')
     }
   }

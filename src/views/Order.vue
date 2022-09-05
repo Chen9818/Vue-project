@@ -178,7 +178,7 @@ import MainImage from '@/components/MainImage.vue'
 export default {
   data () {
     return {
-      title: '付款方式',
+      title: 'お支払い方',
       loadingStatus: {
         loadingItem: ''
       },
@@ -197,7 +197,7 @@ export default {
       },
       coupon: '',
       couponNT: '',
-      payMethod: '信用卡'
+      payMethod: 'カード'
     }
   },
   components: {

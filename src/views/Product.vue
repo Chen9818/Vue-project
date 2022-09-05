@@ -13,14 +13,14 @@
           <h2>「{{product.description}}」</h2>
           <p>尺寸:{{product.content}}</p>
           <div class="d-flex justify-content-between">
-            <p class="fs-4" style="text-decoration: line-through">原價:{{product.origin_price}}</p>
-            <p class="fs-1" style="color:#f00">特價:{{product.price}}</p>
+            <p class="fs-4" style="text-decoration: line-through">原:{{product.origin_price}}</p>
+            <p class="fs-1" style="color:#f00">特:{{product.price}}</p>
             <button
               type="button"
               @click="addToCart(product.id)"
               class="btn btn-base" style="color:#fff"
               :disabled="cart[0]?.qty>7"
-              >カート</button>
+              >カートに入れる</button>
           </div>
         </div>
       </div>
@@ -160,10 +160,10 @@ export default {
         emitter.emit('cart')
         this.loadingStatus.loadingItem = ''
         this.getCart(id)
-        this.$httpMessageState(response, '加入購物車')
+        this.$httpMessageState(response, 'カートに入れる')
         this.$router.push('/carts')
       }).catch((err) => {
-        this.$httpMessageState(err.response, '加入購物車')
+        this.$httpMessageState(err.response, 'カートに入れる')
       })
     },
     getCart (id) {
