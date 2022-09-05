@@ -6,25 +6,25 @@
       <div class="modal-content border-0">
         <div class="modal-header bg-danger text-white">
           <h5 id="delProductModalLabel" class="modal-title">
-            <span>刪除產品</span>
+            <span>商品を取り消す</span>
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          是否刪除
+          取り消しますか？
           <div v-if="item.title">
-            <strong class="text-danger">{{ item.title }}</strong> 商品(刪除後將無法恢復)。
+            <strong class="text-danger">{{ item.title }}</strong> 商品(回復できない)。
           </div>
           <div v-else>
-            編號:<strong class="text-danger">{{ item.id }}</strong> 訂單(刪除後將無法恢復)。
+            商品番号:<strong class="text-danger">{{ item.id }}</strong> オーダー(回復できない)。
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-            取消
+            キャンセル
           </button>
           <button type="button" class="btn btn-danger" @click="$emit('del-item')">
-            確認刪除
+            確認
           </button>
         </div>
       </div>

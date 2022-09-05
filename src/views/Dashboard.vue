@@ -33,7 +33,7 @@ export default {
             this.checkSuccess = true
           })
           .catch((err) => {
-            this.$httpMessageState(err.response, '錯誤訊息')
+            this.$httpMessageState(err.response, 'エーラー')
             this.$router.push('/login')
           })
       } else {

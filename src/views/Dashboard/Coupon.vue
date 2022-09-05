@@ -2,17 +2,17 @@
 <Loading :active="isLoading"></Loading>
 <div class="text-end mt-4">
   <button class="btn btn-primary" type="button" @click="openCouponModal(true)">
-    建立新的優惠券
+    新しいクーポンを増やす
   </button>
 </div>
 <table class="table table-hover mt-4">
   <thead>
     <tr>
       <th scope="col"></th>
-      <th scope="col">名稱</th>
-      <th scope="col">折扣百分比</th>
-      <th scope="col">到期日</th>
-      <th scope="col">是否啟用</th>
+      <th scope="col">商品</th>
+      <th scope="col">割引</th>
+      <th scope="col">クーポン締切</th>
+      <th scope="col">起用</th>
       <th scope="col">編輯</th>
     </tr>
   </thead>
@@ -23,14 +23,14 @@
       <td>{{item.percent}}%</td>
       <td>{{$filters.date(item.due_date)}}</td>
       <td>
-        <div v-if="item.is_enabled === 1">啟用</div>
-        <div v-else>未啟用</div>
+        <div v-if="item.is_enabled === 1">起用</div>
+        <div v-else>起用しない</div>
       </td>
       <td>
         <button type="button" class="btn btn-outline-primary"
         @click="openCouponModal(false, item)">編輯</button>
         <button type="button" class="btn btn-outline-danger"
-        @click="openDelCouponModal(item)">刪除</button>
+        @click="openDelCouponModal(item)">取り消し</button>
       </td>
     </tr>
   </tbody>
@@ -119,12 +119,12 @@ export default {
 
       this.$http[httpMethods](url, { data }).then((response) => {
         this.isLoading = false
-        this.$httpMessageState(response, '新增優惠券')
+        this.$httpMessageState(response, '新しいクーポン')
         this.getCoupon()
         this.$refs.couponModal.hideModal()
       }).catch((error) => {
         this.isLoading = false
-        this.$httpMessageState(error.response, '錯誤訊息')
+        this.$httpMessageState(error.response, 'エーラー')
       })
     },
     delCoupon () {
@@ -132,13 +132,13 @@ export default {
       this.isLoading = true
       this.$http.delete(url).then((response) => {
         this.isLoading = false
-        this.$httpMessageState(response, '刪除優惠券')
+        this.$httpMessageState(response, 'クーポンを取り消す')
         const delComponent = this.$refs.delModal
         delComponent.hideModal()
         this.getCoupon()
       }).catch((error) => {
         this.isLoading = false
-        this.$httpMessageState(error.response, '刪除優惠券')
+        this.$httpMessageState(error.response, 'クーポンを取り消す')
       })
     }
   }

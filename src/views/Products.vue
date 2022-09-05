@@ -16,10 +16,10 @@
       </button>
       <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1" style="width:80%">
         <li class="dropdown-item fs-3" @click="getProducts">全部</li>
-        <li class="dropdown-item fs-3" @click="getFilter('乳膠枕')">乳膠枕</li>
-        <li class="dropdown-item fs-3" @click="getFilter('絲絨枕')">絲絨枕</li>
+        <li class="dropdown-item fs-3" @click="getFilter('乳膠枕')">パイプ枕</li>
+        <li class="dropdown-item fs-3" @click="getFilter('絲絨枕')">わた枕</li>
         <li class="dropdown-item fs-3" @click="getFilter('機能枕')">機能枕</li>
-        <li class="dropdown-item fs-3" @click="getFilter('兒童枕')">兒童枕</li>
+        <li class="dropdown-item fs-3" @click="getFilter('兒童枕')">児童枕</li>
       </ul>
     </div>
 
@@ -41,10 +41,10 @@
                 </div>
                   <div class="card-text d-flex justify-content-between" style="font-size:1.2rem">
                   <p class="text-decoration-line-through">
-                    原價:NT{{ item.origin_price }}
+                    元:NT{{ item.origin_price }}
                   </p>
                   <p style="color:#ff0000">
-                    特價:NT{{ item.price }}
+                    特:NT{{ item.price }}
                   </p>
                   </div>
                 <div class="d-flex justify-content-between">
@@ -58,7 +58,7 @@
                     class="fas fa-spinner fa-pulse"
                     v-if="loadingStatus.loadingItem === item.id"
                     ></i>
-                    查看更多
+                    MORE
                   </button>
 
                   <button
@@ -70,7 +70,7 @@
                     <i
                     class="fas fa-spinner fa-pulse"
                     v-if="loadingStatus.loadingItem === item.id"
-                  ></i>加入購物車</button>
+                  ></i>コートに入れる</button>
                 </div>
               </div>
             </div>

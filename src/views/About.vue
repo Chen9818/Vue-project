@@ -5,23 +5,21 @@
     <MainImage :title="MainTitle"></MainImage>
       <div class="history">
         <div class="title mb-3">
-          <h1>会社の宗旨</h1>
+          <h1>会社理念</h1>
         </div>
         <div class="txt fs-4 p-4">
-          「好眠」秉持著為您提供最好的睡眠相關諮詢。
-          我們的產品都經過專業研發團隊反覆測試及評估，為各種睡眠需求提供最佳的解決辦法。
-          我們相信好的睡眠品質與枕頭品質有極大的關聯。
-          我們將幫助您選對適合自己的枕頭，以改善睡眠品質。「好眠」祝您一夜好眠。
+          「好眠」はお客様の睡眠の品質をお手伝いいたします。お客様一人ひとりの睡眠品質に貢献するため、
+          さまざまな枕を幅広く取り揃え、豊富な商品知識に基づいた、親切で丁寧なコンサルティングセールスを行います。
         </div>
       </div>
       <div class="location pt-3">
         <div class="title">
-          <h1>店の情報</h1>
+          <h1>店鋪情報</h1>
         </div>
         <div>
-          <div class="d-flex locationTitle">台北信義店
+          <div class="d-flex locationTitle">台湾台北信義店
             <span class="d-flex align-items-end d-none d-md-flex">
-              (地址:台灣台北市信義區信義路五段7號)
+              (地址:台湾台北市信義區信義路五段7號)
             </span>
           </div>
           <div class="location1 w-100" >
@@ -45,9 +43,9 @@
           </div>
         </div>
         <div style="width:100%;">
-          <div class="d-flex locationTitle">高雄夢時代店
+          <div class="d-flex locationTitle">台湾高雄夢時代店
             <span class="d-flex align-items-end d-none d-md-flex">
-              (地址:806台灣高雄市前鎮區中華五路789號)
+              (地址:806台湾高雄市前鎮區中華五路789號)
             </span>
           </div>
           <div class="location2 w-100">
@@ -84,7 +82,7 @@ export default {
   name: 'About',
   data () {
     return {
-      MainTitle: '關於我們',
+      MainTitle: '一般情報',
       isLoading: false,
       center1: { lat: 25.033953570933967, lng: 121.56509967426602 },
       center2: { lat: 22.59551597830121, lng: 120.3069220423625 },

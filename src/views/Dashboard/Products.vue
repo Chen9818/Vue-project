@@ -6,30 +6,30 @@
         <div class="row py-3">
           <div class="col-md-8">
             <div class="d-flex">
-              <h2>產品列表</h2>
+              <h2>商品</h2>
               <button
                 type="button"
                 class="btn btn-primary mx-4"
                 @click="openModal('new')"
               >
-                新增產品
+                商品を増やす
               </button>
             </div>
             <table class="table table-hover mt-4">
               <thead>
                 <tr>
-                  <th width="200">產品名稱</th>
+                  <th width="200">商品</th>
                   <th width="120">
-                    原價
+                    元の金額
                   </th>
                   <th width="120">
-                    售價
+                    今の金額
                   </th>
                   <th width="120">
-                    是否啟用
+                    起用
                   </th>
                   <th width="120">
-                    查看細節
+                    詳細
                   </th>
                   <th width="120">
                     編輯
@@ -48,9 +48,9 @@
                   </td>
                   <td width="120">
                     <span class="text-success" v-if="item.is_enabled"
-                      >啟用</span
+                      >起用</span
                     >
-                    <span v-else>未啟用</span>
+                    <span v-else>起用していない</span>
                   </td>
                   <td width="120">
                     <button
@@ -58,7 +58,7 @@
                       class="btn btn-success"
                       @click="showOneProduct = item"
                     >
-                      查看細節
+                      詳細
                     </button>
                   </td>
                   <td width="120">
@@ -76,13 +76,13 @@
                       class="btn btn-danger"
                       @click="openModal('delete', item)"
                     >
-                      刪除
+                      取り消し
                     </button>
                   </td>
                 </tr>
               </tbody>
             </table>
-            <p>此頁有 <span>{{ showProducts.length }}</span> 項產品</p>
+            <p>このページは <span>{{ showProducts.length }}</span> 個の商品があります。</p>
             <PaginationView
               class="d-flex justify-content-center"
               :pages="pagination"
@@ -103,7 +103,7 @@
             ></DeleteProductModal>
           </div>
           <div class="col-md-4">
-            <h2>單一產品細節</h2>
+            <h2>商品詳細</h2>
             <template v-if="showOneProduct.id">
               <div class="card mb-3">
                 <img
@@ -119,7 +119,7 @@
                     >
                   </h5>
                   <p class="card-text">
-                    商品描述：{{ showOneProduct.description }}
+                    商品について：{{ showOneProduct.description }}
                   </p>
                   <p class="card-text">
                     商品內容：{{ showOneProduct.content }}
@@ -129,7 +129,7 @@
                     <p class="card-text text-secondary">
                       <del>{{ showOneProduct.origin_price }}</del>
                     </p>
-                    {{ showOneProduct.unit }} / 元
+                    {{ showOneProduct.unit }} / 円
                   </div>
                 </div>
               </div>
@@ -144,7 +144,7 @@
                 </div>
               </template>
             </template>
-            <p class="text-secondary" v-else>請選擇一個商品查看</p>
+            <p class="text-secondary" v-else>ご商品を確認してください。</p>
           </div>
         </div>
       </div>

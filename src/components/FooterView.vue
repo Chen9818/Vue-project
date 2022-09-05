@@ -5,7 +5,7 @@
       </i>
     </h3>
     <button type="button" class="btn btn-outline-second mx-5 d-flex align-items-center" style="font-size:1rem;height:3rem">
-      <router-link class="nav-link" to="/admin/products" style="color:#fff">注文管理</router-link>
+      <router-link class="nav-link" to="/admin/products" style="color:#fff">注文と商品管理</router-link>
     </button>
   </footer>
 </template>

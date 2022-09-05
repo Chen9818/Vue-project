@@ -20,7 +20,7 @@
               class="fas fa-spinner fa-pulse"
               v-if="loadingStatus.loadingItem === 'open'"
             ></i
-            >清空購物車
+            >すべての商品の選択解除
           </button>
         </div>
       <table class="table align-middle mx-auto" style="width: 80%" v-if="cart.carts.length>0">
@@ -28,7 +28,7 @@
           <tr>
             <th>写真</th>
             <th>商品</th>
-            <th>量</th>
+            <th>数量</th>
             <th>税込</th>
             <th>キャンセル</th>
           </tr>
@@ -231,12 +231,12 @@ export default {
       this.$http
         .put(url, { data: cart })
         .then((response) => {
-          this.$httpMessageState(response, '數量更新')
+          this.$httpMessageState(response, '数量更新')
           this.loadingStatus.loadingItem = ''
           this.getCart()
         })
         .catch((err) => {
-          this.$httpMessageState(err.response, '數量更新')
+          this.$httpMessageState(err.response, '数量更新')
           this.loadingStatus.loadingItem = ''
         })
     },
@@ -246,12 +246,12 @@ export default {
       this.$http
         .delete(url)
         .then((response) => {
-          this.$httpMessageState(response, '刪除')
+          this.$httpMessageState(response, '取り消し')
           this.loadingStatus.loadingItem = ''
           this.getCart()
         })
         .catch((err) => {
-          this.$httpMessageState(err.response, '刪除')
+          this.$httpMessageState(err.response, '取り消し')
         })
     },
     deleteAllCarts (data) {
@@ -260,12 +260,12 @@ export default {
       this.$http
         .delete(url)
         .then((response) => {
-          this.$httpMessageState(response, '全部刪除')
+          this.$httpMessageState(response, '全部取り消し')
           this.loadingStatus.loadingItem = ''
           this.getCart()
         })
         .catch((err) => {
-          this.$httpMessageState(err.response, '全部刪除')
+          this.$httpMessageState(err.response, '全部取り消し')
         })
     },
     redirect () {

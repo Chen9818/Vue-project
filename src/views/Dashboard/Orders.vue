@@ -3,11 +3,11 @@
 <table class="table table-hover mt-4">
   <thead>
     <tr>
-      <th>購買時間</th>
+      <th>注文日</th>
       <th>Email</th>
-      <th>購買款項</th>
-      <th>應付金額</th>
-      <th>是否付款</th>
+      <th>商品</th>
+      <th>金額</th>
+      <th>お支払い状況</th>
       <th>編輯</th>
     </tr>
   </thead>
@@ -19,7 +19,7 @@
         <td>
           <ul class="list-unstyled">
             <li v-for="(product, i) in item.products" :key="i">
-              {{ product.product.title }} 數量：{{ product.qty }}
+              {{ product.product.title }} 数量：{{ product.qty }}
               {{ product.product.unit }}
             </li>
           </ul>
@@ -35,8 +35,8 @@
               @change="updatePaid(item)"
             />
             <label class="form-check-label" :for="`paidSwitch${item.id}`">
-              <span v-if="item.is_paid">已付款</span>
-              <span v-else>未付款</span>
+              <span v-if="item.is_paid">お支払い済</span>
+              <span v-else>未支払い</span>
             </label>
           </div>
         </td>
@@ -47,14 +47,14 @@
               type="button"
               @click="openModal(item)"
             >
-              檢視
+              確認
             </button>
             <button
               class="btn btn-outline-danger btn-sm"
               type="button"
               @click="openDelOrderModal(item)"
             >
-              刪除
+              取り消し
             </button>
           </div>
         </td>

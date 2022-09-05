@@ -48,7 +48,7 @@
                     </div>
                       <div class="card-text d-flex justify-content-between" style="font-size:1.2rem">
                       <p class="text-decoration-line-through">
-                        原:NT{{ item.origin_price }}
+                        元:NT{{ item.origin_price }}
                       </p>
                       <p style="color:#ff0000">
                         特:NT{{ item.price }}
@@ -65,7 +65,7 @@
                         class="fas fa-spinner fa-pulse"
                         v-if="loadingStatus.loadingItem === item.id"
                         ></i>
-                        查看更多
+                        MORE
                       </button>
                       <button
                       type="button"
@@ -76,7 +76,7 @@
                         <i
                         class="fas fa-spinner fa-pulse"
                         v-if="loadingStatus.loadingItem === item.id"
-                      ></i>加入購物車</button>
+                      ></i>コートに入れる</button>
                     </div>
                   </div>
                 </div>
